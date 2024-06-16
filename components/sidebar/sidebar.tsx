@@ -13,118 +13,125 @@ import { DevIcon } from "../icons/sidebar/dev-icon";
 import { ViewIcon } from "../icons/sidebar/view-icon";
 import { SettingsIcon } from "../icons/sidebar/settings-icon";
 import { CollapseItems } from "./collapse-items";
+import { GiCalendar } from "react-icons/gi";
 import { SidebarItem } from "./sidebar-item";
+import { LuSwords } from "react-icons/lu";
+import { FaStarHalfAlt } from "react-icons/fa";
 import { SidebarMenu } from "./sidebar-menu";
 import { FilterIcon } from "../icons/sidebar/filter-icon";
 import { useSidebarContext } from "../layout/layout-context";
-import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
+import { BsFillEnvelopePaperHeartFill } from "react-icons/bs";
+import { BsGiftFill } from "react-icons/bs";
+import { GiFishing } from "react-icons/gi";
+import { IoDocumentText } from "react-icons/io5";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { TbReport } from "react-icons/tb";
 import { usePathname } from "next/navigation";
+import { GiTreasureMap } from "react-icons/gi";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
   const { collapsed, setCollapsed } = useSidebarContext();
 
   return (
-    <aside className="h-screen z-[20] sticky top-0">
-      {collapsed ? (
-        <div className={Sidebar.Overlay()} onClick={setCollapsed} />
-      ) : null}
-      <div
-        className={Sidebar({
-          collapsed: collapsed,
-        })}
-      >
-        <div className={Sidebar.Header()}>
-          <CompaniesDropdown />
-        </div>
-        <div className="flex flex-col justify-between h-full">
-          <div className={Sidebar.Body()}>
-            <SidebarItem
-              title="Home"
-              icon={<HomeIcon />}
-              isActive={pathname === "/"}
-              href="/"
-            />
-            <SidebarMenu title="Main Menu">
-              <SidebarItem
-                isActive={pathname === "/accounts"}
-                title="Accounts"
-                icon={<AccountsIcon />}
-                href="accounts"
-              />
-              <SidebarItem
-                isActive={pathname === "/payments"}
-                title="Payments"
-                icon={<PaymentsIcon />}
-              />
-              <CollapseItems
-                icon={<BalanceIcon />}
-                items={["Banks Accounts", "Credit Cards", "Loans"]}
-                title="Balances"
-              />
-              <SidebarItem
-                isActive={pathname === "/customers"}
-                title="Customers"
-                icon={<CustomersIcon />}
-              />
-              <SidebarItem
-                isActive={pathname === "/products"}
-                title="Products"
-                icon={<ProductsIcon />}
-              />
-              <SidebarItem
-                isActive={pathname === "/reports"}
-                title="Reports"
-                icon={<ReportsIcon />}
-              />
-            </SidebarMenu>
-
-            <SidebarMenu title="General">
-              <SidebarItem
-                isActive={pathname === "/developers"}
-                title="Developers"
-                icon={<DevIcon />}
-              />
-              <SidebarItem
-                isActive={pathname === "/view"}
-                title="View Test Data"
-                icon={<ViewIcon />}
-              />
-              <SidebarItem
-                isActive={pathname === "/settings"}
-                title="Settings"
-                icon={<SettingsIcon />}
-              />
-            </SidebarMenu>
-
-            <SidebarMenu title="Updates">
-              <SidebarItem
-                isActive={pathname === "/changelog"}
-                title="Changelog"
-                icon={<ChangeLogIcon />}
-              />
-            </SidebarMenu>
+      <aside className="h-screen z-[20] sticky top-0">
+        {collapsed ? (
+            <div className={Sidebar.Overlay()} onClick={setCollapsed} />
+        ) : null}
+        <div
+            className={Sidebar({
+              collapsed: collapsed,
+            })}
+        >
+          <div className={Sidebar.Header()}>
+            <CompaniesDropdown />
           </div>
-          <div className={Sidebar.Footer()}>
-            <Tooltip content={"Settings"} color="primary">
-              <div className="max-w-fit">
-                <SettingsIcon />
-              </div>
-            </Tooltip>
-            <Tooltip content={"Adjustments"} color="primary">
-              <div className="max-w-fit">
-                <FilterIcon />
-              </div>
-            </Tooltip>
-            <Tooltip content={"Profile"} color="primary">
-              <Avatar
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                size="sm"
+          <div className="flex flex-col justify-between h-full">
+            <div className={Sidebar.Body()}>
+              <SidebarItem
+                  title="主页"
+                  icon={<HomeIcon />}
+                  isActive={pathname === "/"}
+                  href="/"
               />
-            </Tooltip>
+              <SidebarMenu title="服务器信息">
+                <SidebarItem
+                    isActive={pathname === "/accounts"}
+                    title="服务器简介"
+                    icon={<IoDocumentText/>}
+                    href="profile"
+                />
+                <SidebarItem
+                    isActive={pathname === "/rules"}
+                    title="服务器守则"
+                    icon={<BsFillEnvelopePaperHeartFill  />}
+                    href="rules"
+                />
+                <SidebarItem
+                    isActive={pathname === "/payments"}
+                    title="服务器特色"
+                    icon={<FaStarHalfAlt  />}
+                />
+
+
+                <SidebarItem
+                    isActive={pathname === "/products"}
+                    title="活动日程"
+                    icon={<BsGiftFill  />}
+                />
+                {/*<SidebarItem*/}
+                {/*  isActive={pathname === "/reports"}*/}
+                {/*  title="公开日志"*/}
+                {/*  icon={<HiMiniDocumentText   />}*/}
+                {/*/>*/}
+              </SidebarMenu>
+
+              <SidebarMenu title="排行榜">
+                <SidebarItem
+                    isActive={pathname === "/developers"}
+                    title="富豪榜"
+                    icon={<FaMoneyBillWave  />}
+                />
+                <SidebarItem
+                    isActive={pathname === "/view"}
+                    title="钓鱼佬榜"
+                    icon={<GiFishing  />}
+                />
+                <SidebarItem
+                    isActive={pathname === "/settings"}
+                    title="击杀榜"
+                    icon={<LuSwords  />}
+                />
+              </SidebarMenu>
+
+              <SidebarMenu title="其他功能">
+                <SidebarItem
+                    isActive={pathname === "/changelog"}
+                    title="卫星地图"
+                    icon={<GiTreasureMap />}
+                />
+              </SidebarMenu>
+            </div>
+            <div className={Sidebar.Footer()}>
+              <Tooltip content={"Settings"} color="primary">
+                <div className="max-w-fit">
+                  <SettingsIcon />
+                </div>
+              </Tooltip>
+              <Tooltip content={"Adjustments"} color="primary">
+                <div className="max-w-fit">
+                  <FilterIcon />
+                </div>
+              </Tooltip>
+              <Tooltip content={"Profile"} color="primary">
+                <Avatar
+                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                    size="sm"
+                />
+              </Tooltip>
+            </div>
           </div>
         </div>
-      </div>
-    </aside>
+      </aside>
   );
 };

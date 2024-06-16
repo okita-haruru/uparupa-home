@@ -8,13 +8,11 @@ import {
   NavbarItem,
 } from "@nextui-org/react";
 import React from "react";
-import '@/styles/globals.css'; // 导入样式文件
 import { DarkModeSwitch } from "./darkmodeswitch";
-import { TiHeartFullOutline } from "react-icons/ti";
-import {Card, CardBody,CardHeader} from "@nextui-org/react";
 import {Textarea} from "@nextui-org/input";
 import IconWithText from "@/components/icons/icon-with-text";
-export const UserDropdown = () => {
+
+export const UserDropdownToy = () => {
   return (
       <Dropdown>
         <NavbarItem>
@@ -23,7 +21,7 @@ export const UserDropdown = () => {
                 as="button"
                 color="secondary"
                 size="md"
-                src="https://avatars.githubusercontent.com/u/76481033?v=4"
+                src="https://avatars.githubusercontent.com/u/61079983?v=4"
             />
           </DropdownTrigger>
         </NavbarItem>
@@ -32,7 +30,7 @@ export const UserDropdown = () => {
             onAction={(actionKey) => console.log({ actionKey })}
         >
           <DropdownItem >
-            <div className="name" >Haruru_晴留々</div>
+            <div className="name" >Emperor_Toy</div>
           </DropdownItem>
           <DropdownItem>
             <Textarea
@@ -41,7 +39,7 @@ export const UserDropdown = () => {
                 variant="bordered"
                 labelPlacement="outside"
                 placeholder="Enter your description"
-                defaultValue="服主兼插件开发者。希望大家可以在我的服务器玩得愉快。"
+                defaultValue="主城建筑师，贴图画师。"
                 className="max-w-xs"
             />
           </DropdownItem>

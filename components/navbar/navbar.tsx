@@ -7,6 +7,9 @@ import { SearchIcon } from "../icons/searchicon";
 import { BurguerButton } from "./burguer-button";
 import { NotificationsDropdown } from "./notifications-dropdown";
 import { UserDropdown } from "./user-dropdown";
+import {DarkModeSwitch} from "@/components/navbar/darkmodeswitch";
+import {UserDropdownToy} from "@/components/navbar/user-dropdown-toy";
+import {ContentBox} from "@/components/navbar/content";
 
 interface Props {
   children: React.ReactNode;
@@ -49,17 +52,19 @@ export const NavbarWrapper = ({ children }: Props) => {
           <NotificationsDropdown />
 
           <div className="max-md:hidden">
-            <SupportIcon />
+            <ContentBox/>
           </div>
 
           <Link
-            href="https://github.com/Siumauricio/nextui-dashboard-template"
+            href="https://github.com/okita-haruru"
             target={"_blank"}
           >
             <GithubIcon />
           </Link>
           <NavbarContent>
+            <DarkModeSwitch />
             <UserDropdown />
+            <UserDropdownToy/>
           </NavbarContent>
         </NavbarContent>
       </Navbar>
