@@ -30,7 +30,7 @@ export const UserDropdownToy = () => {
             onAction={(actionKey) => console.log({ actionKey })}
         >
           <DropdownItem >
-            <div className="name" >Emperor_Toy</div>
+            <div className="name" >Stuffed_Toy</div>
           </DropdownItem>
           <DropdownItem>
             <Textarea
