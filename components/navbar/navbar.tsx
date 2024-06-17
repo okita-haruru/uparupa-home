@@ -10,6 +10,7 @@ import { UserDropdown } from "./user-dropdown";
 import {DarkModeSwitch} from "@/components/navbar/darkmodeswitch";
 import {UserDropdownToy} from "@/components/navbar/user-dropdown-toy";
 import {ContentBox} from "@/components/navbar/content";
+import SearchBox from "@/components/navbar/searchbox";
 
 interface Props {
   children: React.ReactNode;
@@ -29,16 +30,8 @@ export const NavbarWrapper = ({ children }: Props) => {
           <BurguerButton />
         </NavbarContent>
         <NavbarContent className="w-full max-md:hidden">
-          <Input
-            startContent={<SearchIcon />}
-            isClearable
-            className="w-full"
-            classNames={{
-              input: "w-full",
-              mainWrapper: "w-full",
-            }}
-            placeholder="Search..."
-          />
+
+         <SearchBox></SearchBox>
         </NavbarContent>
         <NavbarContent
           justify="end"
