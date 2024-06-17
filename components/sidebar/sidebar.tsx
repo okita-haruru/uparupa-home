@@ -106,9 +106,10 @@ export const SidebarWrapper = () => {
 
               <SidebarMenu title="其他功能">
                 <SidebarItem
-                    isActive={pathname === "/changelog"}
+                    isActive={pathname === "/map"}
                     title="卫星地图"
                     icon={<GiTreasureMap />}
+                    href="map"
                 />
               </SidebarMenu>
             </div>
