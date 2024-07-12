@@ -22,7 +22,6 @@ export const RenderCell = ({ user, columnKey }: Props) => {
           }}
           name={cellValue}
         >
-          {user.email}
         </User>
       );
     case "role":
@@ -32,7 +31,6 @@ export const RenderCell = ({ user, columnKey }: Props) => {
             <span>{cellValue}</span>
           </div>
           <div>
-            <span>{user.team}</span>
           </div>
         </div>
       );
