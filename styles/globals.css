@@ -31,3 +31,11 @@ body {
   text-align: center;
   font-size: 18px; /* 设置文字大小 */
 }
+
+.square-avatar {
+  border-radius: 10px;
+}
+.pagination-center {
+  display: flex;
+  justify-content: center;
+}

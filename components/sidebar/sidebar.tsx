@@ -88,9 +88,10 @@ export const SidebarWrapper = () => {
 
               <SidebarMenu title="排行榜">
                 <SidebarItem
-                    isActive={pathname === "/developers"}
+                    isActive={pathname === "/rich_ranking"}
                     title="富豪榜"
                     icon={<FaMoneyBillWave  />}
+                    href="rich_ranking"
                 />
                 <SidebarItem
                     isActive={pathname === "/view"}
@@ -98,9 +99,10 @@ export const SidebarWrapper = () => {
                     icon={<GiFishing  />}
                 />
                 <SidebarItem
-                    isActive={pathname === "/settings"}
+                    isActive={pathname === "/kills_ranking"}
                     title="击杀榜"
                     icon={<LuSwords  />}
+                    href="kills_ranking"
                 />
               </SidebarMenu>
 

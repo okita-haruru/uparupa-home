@@ -1,3 +1,5 @@
+import {API_URL} from "@/config/apiconfig";
+
 export const columns = [
    {name: '排名', uid: 'ranking'},
    {name: '玩家', uid: 'name'},
@@ -25,8 +27,8 @@ interface Player {
     balance: number;
 }
 
-export function fetchUsers() {
-    return axios.get('http://127.0.0.1:8080/ranking/balance?page=1')
+export function fetchUsers(page: number = 1) {
+    return axios.get(API_URL+'/ranking/balance?page='+page)
         .then(response => {
             if (response.data.code === 200) {
                 return response.data.data.map((player: Player) => ({
