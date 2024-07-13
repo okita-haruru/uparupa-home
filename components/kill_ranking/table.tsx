@@ -13,7 +13,7 @@ import {Pagination} from "@nextui-org/react";
 import React, {useEffect, useState} from "react";
 import {columns, fetchKills} from "./data";
 import { RenderCellForKillsRanking } from "./render-cell";
-import { FaFilter } from "react-icons/fa6";
+
 export const TableWrapperForKillsRanking = () => {
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
@@ -34,9 +34,7 @@ export const TableWrapperForKillsRanking = () => {
           <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
             <Dropdown>
               <DropdownTrigger>
-                <Button variant="bordered">
-                  <FaFilter />
-                </Button>
+                <Button variant="bordered">排序方法</Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Static Actions">
                 <DropdownItem key="total" onClick={() => setMethod("total")}>总击杀数</DropdownItem>

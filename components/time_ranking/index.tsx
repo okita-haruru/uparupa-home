@@ -29,11 +29,11 @@ export const TimeRanking = () => {
                     <span> / </span>{" "}
                 </li>
                 <li className="flex gap-2">
-                    <span>肝帝榜</span>
+                    <span>击杀榜</span>
                 </li>
             </ul>
 
-            <h3 className="text-xl font-semibold">真不用睡觉！</h3>
+            <h3 className="text-xl font-semibold">战斗！爽！</h3>
 
             <div className="max-w-[95rem] mx-auto w-full">
                 <TableWrapperForKillsRanking/>
