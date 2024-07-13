@@ -7,10 +7,6 @@ import { SearchIcon } from "../icons/searchicon";
 import { BurguerButton } from "./burguer-button";
 import { NotificationsDropdown } from "./notifications-dropdown";
 import { UserDropdown } from "./user-dropdown";
-import {DarkModeSwitch} from "@/components/navbar/darkmodeswitch";
-import {UserDropdownToy} from "@/components/navbar/user-dropdown-toy";
-import {ContentBox} from "@/components/navbar/content";
-import SearchBox from "@/components/navbar/searchbox";
 
 interface Props {
   children: React.ReactNode;
@@ -30,8 +26,16 @@ export const NavbarWrapper = ({ children }: Props) => {
           <BurguerButton />
         </NavbarContent>
         <NavbarContent className="w-full max-md:hidden">
-
-         <SearchBox></SearchBox>
+          <Input
+            startContent={<SearchIcon />}
+            isClearable
+            className="w-full"
+            classNames={{
+              input: "w-full",
+              mainWrapper: "w-full",
+            }}
+            placeholder="Search..."
+          />
         </NavbarContent>
         <NavbarContent
           justify="end"
@@ -45,19 +49,17 @@ export const NavbarWrapper = ({ children }: Props) => {
           <NotificationsDropdown />
 
           <div className="max-md:hidden">
-            <ContentBox/>
+            <SupportIcon />
           </div>
 
           <Link
-            href="https://github.com/okita-haruru"
+            href="https://github.com/Siumauricio/nextui-dashboard-template"
             target={"_blank"}
           >
             <GithubIcon />
           </Link>
           <NavbarContent>
-            <DarkModeSwitch />
             <UserDropdown />
-            <UserDropdownToy/>
           </NavbarContent>
         </NavbarContent>
       </Navbar>
