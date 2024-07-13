@@ -28,6 +28,7 @@ import { FaMoneyBillWave } from "react-icons/fa";
 import { TbReport } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 import { GiTreasureMap } from "react-icons/gi";
+import { GiLiver } from "react-icons/gi";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -103,6 +104,12 @@ export const SidebarWrapper = () => {
                     title="击杀榜"
                     icon={<LuSwords  />}
                     href="kills_ranking"
+                />
+                <SidebarItem
+                    isActive={pathname === "/time_ranking"}
+                    title="肝帝榜"
+                    icon={<GiLiver  />}
+                    href="time_ranking"
                 />
               </SidebarMenu>
 

@@ -11,7 +11,7 @@ import {InfoIcon} from "@/components/icons/accounts/info-icon";
 import {DotsIcon} from "@/components/icons/accounts/dots-icon";
 import {ExportIcon} from "@/components/icons/accounts/export-icon"
 import {  Dropdown,  DropdownTrigger,  DropdownMenu,  DropdownSection,  DropdownItem} from "@nextui-org/react";
-export const KillsRanking = () => {
+export const TimeRanking = () => {
     return (
         <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
             <ul className="flex">
