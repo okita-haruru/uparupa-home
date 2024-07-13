@@ -18,11 +18,10 @@ export const RenderCell = ({ user, columnKey }: Props) => {
       return (
         <User
           avatarProps={{
-            src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+            src: user.avatar,
           }}
           name={cellValue}
         >
-          {user.email}
         </User>
       );
     case "role":
@@ -32,7 +31,6 @@ export const RenderCell = ({ user, columnKey }: Props) => {
             <span>{cellValue}</span>
           </div>
           <div>
-            <span>{user.team}</span>
           </div>
         </div>
       );

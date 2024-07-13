@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { useLockedBody } from "../hooks/useBodyLock";
 import { NavbarWrapper } from "../navbar/navbar";
@@ -23,8 +21,9 @@ export const Layout = ({ children }: Props) => {
       value={{
         collapsed: sidebarOpen,
         setCollapsed: handleToggleSidebar,
-      }}>
-      <section className='flex'>
+      }}
+    >
+      <section className="flex">
         <SidebarWrapper />
         <NavbarWrapper>{children}</NavbarWrapper>
       </section>

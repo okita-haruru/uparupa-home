@@ -11,3 +11,31 @@ body {
 * {
   box-sizing: border-box;
 }
+.icon-text-container {
+  display: flex; /* 使用 flex 布局 */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.icon {
+  color: deeppink;
+  font-size: 20px; /* 设置图标大小 */
+  margin-right: 8px; /* 可以根据需要调整图标和文字之间的间距 */
+}
+
+.text {
+  color: deeppink;
+  font-size: 14px; /* 设置文字大小 */
+}
+
+.name{
+  text-align: center;
+  font-size: 18px; /* 设置文字大小 */
+}
+
+.square-avatar {
+  border-radius: 10px;
+}
+.pagination-center {
+  display: flex;
+  justify-content: center;
+}
