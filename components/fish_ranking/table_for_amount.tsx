@@ -11,21 +11,26 @@ import {
 } from "@nextui-org/react";
 import {Pagination} from "@nextui-org/react";
 import React, {useEffect, useState} from "react";
-import {columns, fetchKills} from "./data";
-import { RenderCellForKillsRanking } from "./render-cell";
-import { FaFilter } from "react-icons/fa6";
-export const TableWrapperForKillsRanking = () => {
+import {columns_for_amount, fetchAmount,fetchTotalAmount} from "./data";
+import { RenderCellForAmount } from "./render-cell";
+import {FaFilter} from "react-icons/fa6";
+import map from "@/app/map/page";
+
+export const TableWrapperForFishAmount = () => {
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [method, setMethod] = useState("total");
-
+  const map = new Map();
+    map.set("total","总渔获数");
+    map.set("size","尺寸大小");
+    map.set("amount","渔获数");
   useEffect(() => {
-    fetchKills(method, page).then(data => {
+    fetchTotalAmount(page).then(data => {
       setUsers(data);
       setTotal(data.length);
     });
-  }, [method, page]);
+  }, [page]);
 
   return (
 
@@ -35,23 +40,32 @@ export const TableWrapperForKillsRanking = () => {
             <Dropdown>
               <DropdownTrigger>
                 <Button variant="bordered">
-                  <FaFilter />
+                  <FaFilter/>{map.get(method)}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Static Actions">
-                <DropdownItem key="total" onClick={() => setMethod("total")}>总击杀数</DropdownItem>
-                <DropdownItem key="ancient_guardian" onClick={() => setMethod("ancient_guardian")}>远古守卫者</DropdownItem>
-                <DropdownItem key="phantom" onClick={() => setMethod("phantom")}>幻翼</DropdownItem>
-                <DropdownItem key="piglin" onClick={() => setMethod("piglin")}>猪灵</DropdownItem>
-                <DropdownItem key="ender_dragon" onClick={() => setMethod("ender_dragon")}>末影龙</DropdownItem>
-                <DropdownItem key="wither" onClick={() => setMethod("wither")}>凋零</DropdownItem>
-                <DropdownItem key="warden" onClick={() => setMethod("warden")}>坚守者</DropdownItem>
+                <DropdownItem key="total" onClick={() => setMethod("total")} >总渔获数</DropdownItem>
+                <DropdownItem key="size" onClick={() => setMethod("size")} >尺寸大小</DropdownItem>
+                <DropdownItem key="amount" onClick={() => setMethod("amount")} >渔获数</DropdownItem>
               </DropdownMenu>
             </Dropdown>
+            {method !== "total" && (
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button variant="bordered">
+                      {map.get(method)}
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="Static Actions">
+                    <DropdownItem key="size" onClick={() => setMethod("size")} >尺寸大小</DropdownItem>
+                    <DropdownItem key="amount" onClick={() => setMethod("amount")} >渔获数</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+            )}
           </div>
         </div>
         <Table aria-label="Example table with custom cells">
-          <TableHeader columns={columns}>
+          <TableHeader columns={columns_for_amount}>
             {(column) => (
                 <TableColumn
                     key={column.uid}
@@ -67,7 +81,7 @@ export const TableWrapperForKillsRanking = () => {
                 <TableRow>
                   {(columnKey) => (
                       <TableCell>
-                        {RenderCellForKillsRanking({user: item, columnKey: columnKey})}
+                        {RenderCellForAmount({user: item, columnKey: columnKey})}
                       </TableCell>
                   )}
                 </TableRow>
