@@ -46,6 +46,7 @@ interface RecordForSize {
 }
 
 export function fetchSize(fish: string, page: number = 1) {
+    console.log(API_URL+'/ranking/fish/size?fish='+ fish +'&page='+page);
     return axios.get(API_URL+'/ranking/fish/size?fish='+ fish +'&page='+page)
         .then(response => {
             if (response.data.code === 200) {
@@ -92,4 +93,22 @@ export function fetchTotalAmount(page: number = 1) {
                 throw new Error('API request failed');
             }
         });
+}
+export function fetchFishes(){
+    const map = new Map();
+
+    axios.get(API_URL+'/fish')
+        .then(response => {
+            if (response.data.code === 200) {
+                response.data.data.forEach((item: { name: any; key: any; }) => {
+                    map.set( item.key, item.name);
+                });
+            } else {
+                throw new Error('API request failed');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    return map;
 }

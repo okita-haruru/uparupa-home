@@ -12,28 +12,8 @@ interface PropsForAmount {
 }
 
 
-export const RenderCellForSize = ({ user, columnKey }: PropsForSize) => {
-  // @ts-ignore
-  const cellValue = user[columnKey];
-  switch (columnKey) {
-    case "name":
-      return (
-        <User
-          avatarProps={{
-            src: user.avatar,
-            className: 'square-avatar'
-          }}
-          name={cellValue}
-        >
-        </User>
-      );
 
-    default:
-      return cellValue;
-  }
-};
-
-export const RenderCellForAmount = ({ user, columnKey }: PropsForAmount) => {
+export const RenderCell = ({ user, columnKey }: PropsForAmount) => {
     // @ts-ignore
     const cellValue = user[columnKey];
     switch (columnKey) {

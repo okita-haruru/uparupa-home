@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
 import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
-import { TableWrapperForFishAmount } from "./table_for_amount";
+import { TableWrapper } from "./table";
 import {Button, Input} from "@nextui-org/react";
 import {SettingsIcon} from "@/components/icons/sidebar/settings-icon";
 import {TrashIcon} from "@/components/icons/accounts/trash-icon";
@@ -36,7 +36,7 @@ export const FishRanking = () => {
             <h3 className="text-xl font-semibold">看看我又钓到了什么？</h3>
 
             <div className="max-w-[95rem] mx-auto w-full">
-                <TableWrapperForFishAmount/>
+                <TableWrapper/>
             </div>
         </div>
     );
