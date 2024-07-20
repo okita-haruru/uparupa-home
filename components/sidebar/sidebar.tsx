@@ -98,6 +98,7 @@ export const SidebarWrapper = () => {
                     isActive={pathname === "/view"}
                     title="钓鱼佬榜"
                     icon={<GiFishing  />}
+                    href="fish_ranking"
                 />
                 <SidebarItem
                     isActive={pathname === "/kills_ranking"}
