@@ -60,7 +60,7 @@ export function PlayerTable({ type }: { type: 'lobby' | 'survival' }) {
 
     if (transformedData.length === 0) {
         return <div>
-            <h5 className="text-center text-m font-semibold">暂无玩家</h5>
+            <h5 className="text-center text-m font-semibold mt-4 mb-4">暂无玩家捏</h5>
         </div>;
     }
 
