@@ -49,7 +49,7 @@ export function fetchSize(fish: string, page: number = 1) {
     console.log(API_URL+'/ranking/fish/size?fish='+ fish +'&page='+page);
     return axios.get(API_URL+'/ranking/fish/size?fish='+ fish +'&page='+page)
         .then(response => {
-            if (response.data.code === 200) {
+            if (response.data.code === 200 && response.data.data !== null) {
                 return response.data.data.map((data: RecordForSize) => ({
                     id: data.ranking,
                     ranking: data.ranking,
@@ -57,7 +57,9 @@ export function fetchSize(fish: string, page: number = 1) {
                     avatar: data.avatar,
                     size: data.size,
                 }));
-            } else {
+            } else if(response.data.data == null) {
+                return [];
+            }else{
                 throw new Error('API request failed');
             }
         });
@@ -65,7 +67,7 @@ export function fetchSize(fish: string, page: number = 1) {
 export function fetchAmount(fish: string, page: number = 1) {
     return axios.get(API_URL+'/ranking/fish/amount?fish='+ fish +'&page='+page)
         .then(response => {
-            if (response.data.code === 200) {
+            if (response.data.code === 200 && response.data.data !== null) {
                 return response.data.data.map((data: RecordForAmount) => ({
                     id: data.ranking,
                     ranking: data.ranking,
@@ -73,7 +75,10 @@ export function fetchAmount(fish: string, page: number = 1) {
                     avatar: data.avatar,
                     amount: data.amount,
                 }));
-            } else {
+            } else if(response.data.data == null) {
+                return [];
+
+            }else{
                 throw new Error('API request failed');
             }
         });
