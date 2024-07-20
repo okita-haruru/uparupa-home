@@ -43,3 +43,11 @@ body {
   max-height: 200px;
   overflow-y: auto;
 }
+
+.equal-width {
+  width: 50%; /* Adjust this value according to your needs */
+}
+
+.full-width {
+  width: 100%;
+}
