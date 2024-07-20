@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Link, Navbar, NavbarContent } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { SearchIcon } from "../icons/searchicon";
 
 const MyComponent = () => {
@@ -8,7 +8,10 @@ const MyComponent = () => {
             const query = (event.currentTarget as HTMLInputElement).value.trim(); // 获取输入框的值，并去除首尾空格
             if (query) {
                 const url = `https://zh.minecraft.wiki/w/${encodeURIComponent(query)}`;
-                window.open(url, '_blank');
+                if (typeof window !== 'undefined') {
+                    window.open(url, '_blank');
+                }
+
             }
         }
     };
