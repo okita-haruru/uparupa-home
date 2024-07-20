@@ -1,6 +1,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { useChartData } from './useChartData';
+import { ApexOptions } from 'apexcharts';
 
 // 动态导入 Chart 组件，并禁用服务器端渲染
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -16,12 +17,12 @@ const generateSeries = (data: { login_time: string; count: number }[]) => {
 };
 
 // 定义一个函数来生成 options 配置
-const generateOptions = (data: { login_time: string; count: number }[]) => {
+const generateOptions = (data: { login_time: string; count: number }[]): ApexOptions => {
     return {
         chart: {
-            type: 'area' as const,
+            type: 'area',
             animations: {
-                easing: 'linear',
+                easing: 'linear', // 确保这里是合法的值
                 speed: 300,
             },
             sparkline: {
