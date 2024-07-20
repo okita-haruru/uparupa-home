@@ -37,7 +37,9 @@ export function TotalOnlinePlayers() {
     }, []);
 
     if (count === null) {
-        return <div>Loading...</div>;
+        return  <Card className="full-width">
+            <h3 className="text-center text-xl font-semibold mt-4 mb-4">总在线玩家：？？？</h3>
+        </Card>;
     }
 
     return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from '@nextui-org/react';
 import {API_URL} from "@/config/apiconfig";
-
+import {Spinner} from "@nextui-org/react";
 interface Player {
     ping: number;
     name: string;
@@ -53,7 +53,9 @@ export function PlayerTable({ type }: { type: 'lobby' | 'survival' }) {
     }, [type]);
 
     if (!data) {
-        return <div>Loading...</div>;
+        return<div  className="mt-4 mb-4" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Spinner  size="lg" label="加载中..." color="primary" />
+        </div>;
     }
 
     const transformedData = transformData(data, type);
