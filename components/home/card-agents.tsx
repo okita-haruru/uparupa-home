@@ -2,11 +2,11 @@ import { Avatar, AvatarGroup, Card, CardBody, Tooltip } from "@nextui-org/react"
 import React, { useState } from "react";
 
 const avatarData = [
-  { username: 'user1', avatarUrl: 'https://avatars.githubusercontent.com/u/64072801?v=4' },
-  { username: 'user2', avatarUrl: 'https://avatars.githubusercontent.com/u/76481033?v=4' },
-  { username: 'user3', avatarUrl: 'https://avatars.githubusercontent.com/u/61079983?v=4' },
-  { username: 'user4', avatarUrl: 'https://avatars.githubusercontent.com/u/23549756?v=4' },
-  { username: 'user5', avatarUrl: 'https://avatars.githubusercontent.com/u/35602393?v=4' },
+  { username: 'もも天狗', avatarUrl: 'https://avatars.githubusercontent.com/u/64072801?v=4' },
+  { username: '晴留々_Haruru', avatarUrl: 'https://avatars.githubusercontent.com/u/76481033?v=4' },
+  { username: '毛绒玩具公仔', avatarUrl: 'https://avatars.githubusercontent.com/u/61079983?v=4' },
+  { username: 'ColaTea', avatarUrl: 'https://avatars.githubusercontent.com/u/23549756?v=4' },
+  { username: 'PVP', avatarUrl: 'https://avatars.githubusercontent.com/u/35602393?v=4' },
 ];
 
 export const CardAgents = () => {
