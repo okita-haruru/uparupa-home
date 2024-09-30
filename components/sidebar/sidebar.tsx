@@ -3,11 +3,8 @@ import { Sidebar } from "./sidebar.styles";
 import { HomeIcon } from "../icons/sidebar/home-icon";
 import { SidebarItem } from "./sidebar-item";
 import { LuSwords } from "react-icons/lu";
-import { FaStarHalfAlt } from "react-icons/fa";
 import { SidebarMenu } from "./sidebar-menu";
 import { useSidebarContext } from "../layout/layout-context";
-import { BsFillEnvelopePaperHeartFill } from "react-icons/bs";
-import { BsGiftFill } from "react-icons/bs";
 import { GiFishing } from "react-icons/gi";
 import { IoDocumentText } from "react-icons/io5";
 import { FaMoneyBillWave } from "react-icons/fa";
@@ -15,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { GiTreasureMap } from "react-icons/gi";
 import { GiLiver } from "react-icons/gi";
 import {CardTitle} from "@/components/home/card-title";
+import { LuFileClock } from "react-icons/lu";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -43,28 +41,20 @@ export const SidebarWrapper = () => {
               />
               <SidebarMenu title="服务器信息">
                 <SidebarItem
-                    isActive={pathname === "/accounts"}
-                    title="服务器简介"
+                    title="服务器文档"
                     icon={<IoDocumentText/>}
-                    href="profile"
+                    href="https://doc.uparupa.town/"
                 />
+                {/*<SidebarItem*/}
+                {/*    isActive={pathname === "/event"}*/}
+                {/*    title="活动日程"*/}
+                {/*    icon={<BsGiftFill  />}*/}
+                {/*/>*/}
                 <SidebarItem
-                    isActive={pathname === "/rules"}
-                    title="服务器守则"
-                    icon={<BsFillEnvelopePaperHeartFill  />}
-                    href="rules"
-                />
-                <SidebarItem
-                    isActive={pathname === "/payments"}
-                    title="服务器特色"
-                    icon={<FaStarHalfAlt  />}
-                />
-
-
-                <SidebarItem
-                    isActive={pathname === "/products"}
-                    title="活动日程"
-                    icon={<BsGiftFill  />}
+                    isActive={pathname === "/update-log"}
+                    title="更新日志"
+                    icon={<LuFileClock  />}
+                    href="update-log"
                 />
                 {/*<SidebarItem*/}
                 {/*  isActive={pathname === "/reports"}*/}
