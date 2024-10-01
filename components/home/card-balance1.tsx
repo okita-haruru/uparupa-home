@@ -90,7 +90,7 @@ export const CardBalance1 = () => {
                 <div className="flex gap-2.5">
                     <BsFillHousesFill size={25} />
                     <div className="flex flex-col">
-                        <span className="text-white">小镇状态：寄了</span>
+                        <span className="text-white">小镇状态：你服炸了</span>
                         {/*<span className="text-white text-xs">已启动 12h12m</span>*/}
                         {/*<span className="text-white text-xs">1311 位玩家在线</span>*/}
 
