@@ -36,9 +36,13 @@ export const CardBalance1 = () => {
                 setCount(totalCount);
             })
             .catch(error => {
-                const status = error.response.status;
-                setCode(status);
-                console.error('Failed to fetch data    code++++++:', error);
+                if (error.response) {
+                    const status = error.response.status;
+                    setCode(status);
+                } else {
+                    // 设置一个默认的状态码
+                    setCode(502);
+                }
                 if (error.code === 'ECONNABORTED') {
                     setCode(401);
                     console.error('Request timed out:', error);
@@ -56,7 +60,7 @@ export const CardBalance1 = () => {
                 <div className="flex gap-2.5">
                     <BiServer size={25} />
                     <div className="flex flex-col">
-                        <span className="text-white">小镇状态：维护中</span>
+                        <span className="text-white">小镇状态：修缮中</span>
                         {/*<span className="text-white text-xs">已启动 114514</span>*/}
                         {/*<span className="text-white text-xs">1311 位玩家在线</span>*/}
 
@@ -71,21 +75,21 @@ export const CardBalance1 = () => {
                 <div className="flex gap-2.5">
                     <BiServer size={25} />
                     <div className="flex flex-col">
-                        <span className="text-white">小镇状态：正常运行</span>
-                        <span className="text-white text-xs">{count} 位玩家在线</span>
+                        <span className="text-white">小镇状态：营业中</span>
+                        <span className="text-white text-xs">{count} 位公民在线</span>
 
                     </div>
                 </div>
             </CardBody>
         </Card>
     }
-    if (code === 401) {
+    if (code === 502) {
         return   <Card className="xl:max-w-sm bg-danger rounded-xl shadow-md px-3 w-full">
             <CardBody className="py-5 overflow-hidden">
                 <div className="flex gap-2.5">
                     <BiServer size={25} />
                     <div className="flex flex-col">
-                        <span className="text-white">小镇状态：宕机</span>
+                        <span className="text-white">小镇状态：寄了</span>
                         {/*<span className="text-white text-xs">已启动 12h12m</span>*/}
                         {/*<span className="text-white text-xs">1311 位玩家在线</span>*/}
 
