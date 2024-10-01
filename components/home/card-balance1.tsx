@@ -1,6 +1,7 @@
 import { Card, CardBody } from "@nextui-org/react";
 import React, {useEffect, useState} from "react";
 // import { Community } from "../icons/community";
+import { BsFillHousesFill } from "react-icons/bs";
 import {Spinner} from "@nextui-org/react";
 import { BiServer } from "react-icons/bi";
 import axios from "axios";
@@ -58,7 +59,7 @@ export const CardBalance1 = () => {
         return   <Card className="xl:max-w-sm bg-warning rounded-xl shadow-md px-3 w-full">
             <CardBody className="py-5 overflow-hidden">
                 <div className="flex gap-2.5">
-                    <BiServer size={25} />
+                    <BsFillHousesFill size={25} />
                     <div className="flex flex-col">
                         <span className="text-white">小镇状态：修缮中</span>
                         {/*<span className="text-white text-xs">已启动 114514</span>*/}
@@ -73,7 +74,7 @@ export const CardBalance1 = () => {
         return  <Card className="xl:max-w-sm bg-success rounded-xl shadow-md px-3 w-full">
             <CardBody className="py-5 overflow-hidden">
                 <div className="flex gap-2.5">
-                    <BiServer size={25} />
+                    <BsFillHousesFill size={25} />
                     <div className="flex flex-col">
                         <span className="text-white">小镇状态：营业中</span>
                         <span className="text-white text-xs">{count} 位公民在线</span>
@@ -87,7 +88,7 @@ export const CardBalance1 = () => {
         return   <Card className="xl:max-w-sm bg-danger rounded-xl shadow-md px-3 w-full">
             <CardBody className="py-5 overflow-hidden">
                 <div className="flex gap-2.5">
-                    <BiServer size={25} />
+                    <BsFillHousesFill size={25} />
                     <div className="flex flex-col">
                         <span className="text-white">小镇状态：寄了</span>
                         {/*<span className="text-white text-xs">已启动 12h12m</span>*/}
@@ -102,7 +103,7 @@ export const CardBalance1 = () => {
     <Card className="xl:max-w-sm bg-default rounded-xl shadow-md px-3 w-full">
       <CardBody className="py-5 overflow-hidden">
         <div className="flex gap-2.5">
-          <BiServer size={25} />
+          <BsFillHousesFill size={25} />
             <div className="flex flex-col">
                 <span className="text-white">小镇状态：
                 <Spinner size="sm"/></span>
