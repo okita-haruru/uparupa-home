@@ -1,47 +1,112 @@
 import { Card, CardBody } from "@nextui-org/react";
-import React from "react";
+import React, {useEffect, useState} from "react";
 // import { Community } from "../icons/community";
-
+import {Spinner} from "@nextui-org/react";
+import { BiServer } from "react-icons/bi";
+import axios from "axios";
+import {API_URL} from "@/config/apiconfig";
 export const CardBalance1 = () => {
-  return (
-    <Card className="xl:max-w-sm bg-primary rounded-xl shadow-md px-3 w-full">
+    const [count, setCount] = useState<number | null>(null);
+    const [code, setCode] = useState<number | null>(null);
+    interface PlayerListData {
+        lobby: {
+            players: Player[];
+            count: number;
+        };
+        survival: {
+            players: Player[];
+            count: number;
+        };
+    }
+
+    interface Player {
+        ping: number;
+        name: string;
+        uuid: string;
+        avatar: string;
+    }
+
+    useEffect(() => {
+        axios.get(API_URL + '/player_list')
+            .then(response => {
+                console.log("res-code"+response.status); // 打印状态码
+                const data: PlayerListData = response.data.data;
+                setCode(response.status);
+                const totalCount = data.lobby.count + data.survival.count;
+                setCount(totalCount);
+            })
+            .catch(error => {
+                const status = error.response.status;
+                setCode(status);
+                console.error('Failed to fetch data    code++++++:', error);
+                if (error.code === 'ECONNABORTED') {
+                    setCode(401);
+                    console.error('Request timed out:', error);
+                } else {
+                    console.error('Failed to fetch data:', error);
+                }
+            });
+    }, []);
+
+    console.log("cooooooooooode"+code);
+
+    if (code === 501) {//服务器寄了
+        return   <Card className="xl:max-w-sm bg-warning rounded-xl shadow-md px-3 w-full">
+            <CardBody className="py-5 overflow-hidden">
+                <div className="flex gap-2.5">
+                    <BiServer size={25} />
+                    <div className="flex flex-col">
+                        <span className="text-white">小镇状态：维护中</span>
+                        {/*<span className="text-white text-xs">已启动 114514</span>*/}
+                        {/*<span className="text-white text-xs">1311 位玩家在线</span>*/}
+
+                    </div>
+                </div>
+            </CardBody>
+        </Card>
+    }
+    if (code === 200) {
+        return  <Card className="xl:max-w-sm bg-success rounded-xl shadow-md px-3 w-full">
+            <CardBody className="py-5 overflow-hidden">
+                <div className="flex gap-2.5">
+                    <BiServer size={25} />
+                    <div className="flex flex-col">
+                        <span className="text-white">小镇状态：正常运行</span>
+                        <span className="text-white text-xs">{count} 位玩家在线</span>
+
+                    </div>
+                </div>
+            </CardBody>
+        </Card>
+    }
+    if (code === 401) {
+        return   <Card className="xl:max-w-sm bg-danger rounded-xl shadow-md px-3 w-full">
+            <CardBody className="py-5 overflow-hidden">
+                <div className="flex gap-2.5">
+                    <BiServer size={25} />
+                    <div className="flex flex-col">
+                        <span className="text-white">小镇状态：宕机</span>
+                        {/*<span className="text-white text-xs">已启动 12h12m</span>*/}
+                        {/*<span className="text-white text-xs">1311 位玩家在线</span>*/}
+
+                    </div>
+                </div>
+            </CardBody>
+        </Card>
+    }
+    return (
+    <Card className="xl:max-w-sm bg-default rounded-xl shadow-md px-3 w-full">
       <CardBody className="py-5 overflow-hidden">
-        {/*<div className="flex gap-2.5">*/}
-        {/*  <Community />*/}
-        {/*  <div className="flex flex-col">*/}
-        {/*    <span className="text-white">Auto Insurance</span>*/}
-        {/*    <span className="text-white text-xs">1311 Cars</span>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*<div className="flex gap-2.5 py-2 items-center">*/}
-        {/*  <span className="text-white text-xl font-semibold">$45,910</span>*/}
-        {/*  <span className="text-success text-xs">+ 4.5%</span>*/}
-        {/*</div>*/}
-        {/*<div className="flex items-center gap-6">*/}
-        {/*  <div>*/}
-        {/*    <div>*/}
-        {/*      <span className="font-semibold text-success text-xs">{"↓"}</span>*/}
-        {/*      <span className="text-xs text-white">100,930</span>*/}
-        {/*    </div>*/}
-        {/*    <span className="text-white text-xs">USD</span>*/}
-        {/*  </div>*/}
+        <div className="flex gap-2.5">
+          <BiServer size={25} />
+            <div className="flex flex-col">
+                <span className="text-white">小镇状态：
+                <Spinner size="sm"/></span>
+                {/*<span className="text-white text-xs">已启动 12h12m</span>*/}
+                {/*<span className="text-white text-xs">1311 位玩家在线</span>*/}
 
-        {/*  <div>*/}
-        {/*    <div>*/}
-        {/*      <span className="font-semibold text-danger text-xs">{"↑"}</span>*/}
-        {/*      <span className="text-xs text-white">54,120</span>*/}
-        {/*    </div>*/}
-        {/*    <span className="text-white text-xs">USD</span>*/}
-        {/*  </div>*/}
-
-        {/*  <div>*/}
-        {/*    <div>*/}
-        {/*      <span className="font-semibold text-danger text-xs">{"⭐"}</span>*/}
-        {/*      <span className="text-xs text-white">125</span>*/}
-        {/*    </div>*/}
-        {/*    <span className="text-white text-xs">VIP</span>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+            </div>
+        </div>
       </CardBody>
     </Card>
   );
