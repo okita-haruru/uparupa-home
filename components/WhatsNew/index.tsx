@@ -1,7 +1,6 @@
 "use client"
 import {FC, useEffect, useState} from "react";
 import {Card} from "@nextui-org/react";
-import axios from "axios";
 
 interface Update {
   version: string;
@@ -38,8 +37,6 @@ interface WhatsNewItem {
   title: string;
   details: string[];
 }
-
-const whatsNewDataPromise = fetch("https://raw.githubusercontent.com/Ave-CRYCHIC/uparupa-whatsnew/refs/heads/main/whatsnew.json")
 
 export const WhatsNew: FC = () => {
   const [whatsNewData, setWhatsNewData] = useState<WhatsNewData[]>([])

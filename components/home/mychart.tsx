@@ -82,7 +82,7 @@ export const MyChart = () => {
 
     const series = generateSeries(data);
     const options = generateOptions(data);
-    console.log('Data:', data);
+    // console.log('Data:', data);
 
     return (
         <div className="w-full z-20">

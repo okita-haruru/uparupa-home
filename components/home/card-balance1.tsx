@@ -30,7 +30,7 @@ export const CardBalance1 = () => {
     useEffect(() => {
         axios.get(API_URL + '/player_list')
             .then(response => {
-                console.log("res-code"+response.status); // 打印状态码
+                // console.log("res-code"+response.status); // 打印状态码
                 const data: PlayerListData = response.data.data;
                 setCode(response.status);
                 const totalCount = data.lobby.count + data.survival.count;
@@ -53,7 +53,7 @@ export const CardBalance1 = () => {
             });
     }, []);
 
-    console.log("cooooooooooode"+code);
+    // console.log("cooooooooooode"+code);
 
     if (code === 501) {//服务器寄了
         return   <Card className="xl:max-w-sm bg-warning rounded-xl shadow-md px-3 w-full">

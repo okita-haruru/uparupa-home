@@ -1,8 +1,8 @@
 import React from 'react';
 import {RichRanking} from '@/components/rich_ranking';
 
-const rich_ranking = () => {
+const treasure_ranking = () => {
     return <RichRanking />;
 };
 
-export default rich_ranking;
+export default treasure_ranking;
