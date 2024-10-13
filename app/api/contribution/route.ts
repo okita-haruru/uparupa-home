@@ -1,8 +1,6 @@
 import {NextResponse} from "next/server";
 import axios from "axios";
 
-require('dotenv').config();
-
 const GITHUB_API_URL = 'https://api.github.com';
 const TOKEN = process.env.GITHUB_TOKEN;
 const ORGANIZATION = process.env.ORGANIZATION;
@@ -24,17 +22,42 @@ async function getContributorStats(repoFullName: string) {
   return response.data;
 }
 
-export async function GET() {
+interface GithubRepo {
+  full_name: string;
+}
+
+interface GithubMember {
+  login: string;
+}
+
+interface Contribution {
+  [login: string]: { commits: number, additions: number, deletions: number }
+}
+
+export interface GithubContribution {
+  id: string;
+  commits: number;
+  additions: number;
+  deletions: number;
+}
+
+export interface GithubContributionApiResult {
+  error: string;
+  status: number;
+  data: GithubContribution[];
+}
+
+export async function GET(): Promise<NextResponse<GithubContributionApiResult>> {
   try {
-    const repos = await axios.get(`${GITHUB_API_URL}/orgs/${ORGANIZATION}/repos`, {headers})
+    const repos: GithubRepo[] = await axios.get(`${GITHUB_API_URL}/orgs/${ORGANIZATION}/repos`, {headers})
       .then(res => res.data);
-    const members = await axios.get(`${GITHUB_API_URL}/orgs/${ORGANIZATION}/members`, {headers})
+    const members: GithubMember[] = await axios.get(`${GITHUB_API_URL}/orgs/${ORGANIZATION}/members`, {headers})
       .then(res => res.data);
 
-    const memberLogins = new Set(members.map((member: { login: string; }) => member.login));
-    const contributions: { [login: string]: { commits: number, additions: number, deletions: number } } = {};
+    const memberLogins = new Set(members.map(member => member.login));
+    const contributions: Contribution = {};
 
-    await Promise.all(repos.map(async (repo: { full_name: string; }) => {
+    await Promise.all(repos.map(async repo => {
       const contributors = await axios.get(`${GITHUB_API_URL}/repos/${repo.full_name}/contributors`, {headers})
         .then(res => res.data);
 
@@ -65,8 +88,18 @@ export async function GET() {
       }
     }))
 
-    return NextResponse.json(Object.entries(contributions).map(([login, stats]) => ({id: login, ...stats})));
+    const result = Object.entries(contributions).map(([login, stats]) => ({id: login, ...stats}));
+
+    return NextResponse.json({
+      data: result,
+      error: '',
+      status: 0
+    });
   } catch (e) {
-    return NextResponse.json({error: e})
+    return NextResponse.json({
+      data: [],
+      error: JSON.stringify(e),
+      status: -1
+    });
   }
 }
