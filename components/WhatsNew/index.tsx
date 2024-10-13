@@ -2,31 +2,6 @@
 import {FC, useEffect, useState} from "react";
 import {Card} from "@nextui-org/react";
 
-interface Update {
-  version: string;
-  date: string;
-  content: string;
-}
-
-const testData: Update[] = [
-  {
-    version: '1.0.0',
-    date: '2022-01-01',
-    content: 'Initial release\n- Feature A\n- Feature B',
-  },
-  {
-    version: '1.1.0',
-    date: '2022-02-01',
-    content: 'Added feature C\n- Updated feature A\n- Fixed bug in feature B',
-  },
-  {
-    version: '1.1.1',
-    date: '2022-02-15',
-    content: 'Bug fixes\n- Fixed bug in feature C',
-  },
-];
-
-
 interface WhatsNewData {
   version: string,
   ['release-date']: string,
@@ -46,7 +21,7 @@ export const WhatsNew: FC = () => {
       .then(async resp => {
         setWhatsNewData(await resp.json());
       })
-  })
+  }, [])
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh'}}>
