@@ -48,9 +48,6 @@ export const Content = () => (
 
     {/* Table Latest Users */}
     <div className="flex flex-col justify-center w-full py-5 px-4 lg:px-0  max-w-[90rem] mx-auto gap-3">
-      {/*<div className="flex  flex-wrap justify-between">*/}
-      {/*  <TotalOnlinePlayers/>*/}
-      {/*</div>*/}
       <div className="flex justify-between">
       <div style={{flex: 1, marginRight: '10px'}}>
           <Card>
