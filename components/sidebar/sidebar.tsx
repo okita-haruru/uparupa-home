@@ -51,7 +51,7 @@ export const SidebarWrapper = () => {
                 {/*    icon={<BsGiftFill  />}*/}
                 {/*/>*/}
                 <SidebarItem
-                    isActive={pathname === "/update-log"}
+                    isActive={pathname === "/WhatsNew"}
                     title="更新日志"
                     icon={<LuFileClock  />}
                     href="update-log"

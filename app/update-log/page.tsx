@@ -1,8 +1,8 @@
 import React from 'react';
-import {UpdateLog} from '@/components/update-log';
+import {WhatsNew} from '@/components/WhatsNew';
 
-const time_ranking = () => {
-    return <UpdateLog />;
+const UpdateLog = () => {
+    return <WhatsNew/>;
 };
 
-export default time_ranking;
+export default UpdateLog;

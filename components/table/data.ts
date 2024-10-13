@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const columns = [
    {name: '排名', uid: 'ranking'},
    {name: '玩家', uid: 'name'},
@@ -11,7 +13,6 @@ export const users = [
       balance: '1000',
    },
 ];
-import axios from 'axios';
 
 interface PlayerInfo {
     uuid: string;

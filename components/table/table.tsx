@@ -1,15 +1,7 @@
-import {
-  Link,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/react";
+import {Table, TableBody, TableCell, TableColumn, TableHeader, TableRow,} from "@nextui-org/react";
 import React from "react";
-import { columns, users } from "./data";
-import { RenderCell } from "./render-cell";
+import {columns, users} from "./data";
+import {RenderCell} from "./render-cell";
 
 export const TableWrapper = () => {
   return (

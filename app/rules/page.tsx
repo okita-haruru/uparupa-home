@@ -2,7 +2,7 @@ import React from 'react';
 import {Rules} from '@/components/rules';
 
 const rules = () => {
-    return <Rules />;
+    return <Rules/>;
 };
 
 export default rules;
