@@ -8,7 +8,8 @@ const TEAM = process.env.GITHUB_TEAM;
 
 const headers = {
   'Authorization': `Bearer ${TOKEN}`,
-  'Accept': 'application/vnd.github+json'
+  'Accept': 'application/vnd.github+json',
+  'X-GitHub-Api-Version': '2022-11-28',
 };
 
 interface GithubUser {
@@ -49,7 +50,7 @@ export interface DeveloperContribute {
   commits: number;
   additions: number;
   deletions: number;
-  usernam
+  username: string;
 }
 
 export interface RepoContributor {
@@ -90,7 +91,7 @@ export async function GET() {
         .then(resp => {
           const data = resp.data as GithubContributor[];
           if (!Array.isArray(data)) {
-            console.error(`Unexpected stats format for ${full_name}, ${resp.status}:`, data);
+            console.error(`Unexpected stats format for ${full_name}, ${resp.status} [${url}/stats/contributors]:`, data);
             return [];
           }
           return data;
@@ -108,13 +109,14 @@ export async function GET() {
             commits: contributor.total,
             additions: contributor.weeks.reduce((acc, week) => acc + week.a, 0),
             deletions: contributor.weeks.reduce((acc, week) => acc + week.d, 0),
+            username: contributor.author.login,
           })))
       };
     }));
 
     details.forEach(detail => {
       detail.contributors.forEach(contributor => {
-        const member = summary.find(member => member.username === contributor);
+        const member = summary.find(member => member.username === contributor.username);
         if (member) {
           member.contributions.commits += contributor.commits;
           member.contributions.additions += contributor.additions;
