@@ -1,23 +1,9 @@
 import {Avatar, AvatarGroup, Card, CardBody, Tooltip} from "@nextui-org/react";
 import React, {useEffect, useState} from "react";
-import {GithubContribution} from "@/app/api/contribution/route";
 import {GetDevelopersResponse} from "@/app/api/developers/route";
 import {FaExternalLinkAlt} from "react-icons/fa";
 
-require('dotenv').config();
-
-const avatarData = [
-  {username: 'もも天狗', userid: '', avatarUrl: 'https://avatars.githubusercontent.com/u/64072801?v=4'},
-  {username: '晴留々_Haruru', userid: '', avatarUrl: 'https://avatars.githubusercontent.com/u/76481033?v=4'},
-  {username: '毛绒玩具公仔', userid: '', avatarUrl: 'https://avatars.githubusercontent.com/u/61079983?v=4'},
-  {username: 'ColaTea', userid: '', avatarUrl: 'https://avatars.githubusercontent.com/u/23549756?v=4'},
-  {username: 'PVP', userid: '', avatarUrl: 'https://avatars.githubusercontent.com/u/35602393?v=4'},
-];
-
 export const CardAgents = () => {
-  const [tooltipContent, setTooltipContent] = useState(null);
-
-  const [contribution, setContribution] = useState<GithubContribution[]>([]);
   const [developers, setDevelopers] = useState<GetDevelopersResponse>()
 
   useEffect(() => {
@@ -50,7 +36,7 @@ export const CardAgents = () => {
                     <FaExternalLinkAlt size={10}/>
                   </div>
                 }>
-                <Avatar className='cursor-pointer' src={user.avatar} size='lg'
+                <Avatar color='success' className='cursor-pointer' src={user.avatar} size='lg'
                         onClick={() => window.open(user.user_page)}/>
               </Tooltip>
             ))}

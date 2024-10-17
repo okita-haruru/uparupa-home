@@ -4,50 +4,57 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 .icon-text-container {
-  display: flex; /* 使用 flex 布局 */
-  align-items: center; /* 垂直居中对齐 */
+    display: flex; /* 使用 flex 布局 */
+    align-items: center; /* 垂直居中对齐 */
 }
 
 .icon {
-  color: deeppink;
-  font-size: 20px; /* 设置图标大小 */
-  margin-right: 8px; /* 可以根据需要调整图标和文字之间的间距 */
+    color: deeppink;
+    font-size: 20px; /* 设置图标大小 */
+    margin-right: 8px; /* 可以根据需要调整图标和文字之间的间距 */
 }
 
 .text {
-  color: deeppink;
-  font-size: 14px; /* 设置文字大小 */
+    color: deeppink;
+    font-size: 14px; /* 设置文字大小 */
 }
 
-.name{
-  text-align: center;
-  font-size: 18px; /* 设置文字大小 */
+.name {
+    text-align: center;
+    font-size: 18px; /* 设置文字大小 */
 }
 
 .square-avatar {
-  border-radius: 10px;
+    border-radius: 10px;
 }
+
 .pagination-center {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
+
 .dropdown-menu {
-  max-height: 200px;
-  overflow-y: auto;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .equal-width {
-  width: 50%; /* Adjust this value according to your needs */
+    width: 50%; /* Adjust this value according to your needs */
 }
 
 .full-width {
-  width: 100%;
+    width: 100%;
+}
+
+input::placeholder {
+    user-select: none;
 }
