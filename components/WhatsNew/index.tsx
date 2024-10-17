@@ -1,3 +1,4 @@
+"use client"
 import {FC, useEffect, useState} from "react";
 import {Card, Spinner} from "@nextui-org/react";
 
