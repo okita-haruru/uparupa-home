@@ -2,6 +2,7 @@ import {Avatar, AvatarGroup, Card, CardBody, Tooltip} from "@nextui-org/react";
 import React, {useEffect, useState} from "react";
 import {GithubContribution} from "@/app/api/contribution/route";
 import {GetDevelopersResponse} from "@/app/api/developers/route";
+import {FaExternalLinkAlt} from "react-icons/fa";
 
 require('dotenv').config();
 
@@ -40,7 +41,15 @@ export const CardAgents = () => {
           <span className="text-xs">争取提供令玩家满意的游戏体验</span>
           <AvatarGroup isBordered>
             {developers?.summary.map((user) => (
-              <Tooltip className='select-none' key={user.username} content={user.displayName}>
+              <Tooltip
+                className='select-none'
+                key={user.username}
+                content={
+                  <div className='flex justify-center content-center justify-items-center items-center'>
+                    <span className='mx-1'>{user.displayName}</span>
+                    <FaExternalLinkAlt size={10}/>
+                  </div>
+                }>
                 <Avatar className='cursor-pointer' src={user.avatar} size='lg'
                         onClick={() => window.open(user.user_page)}/>
               </Tooltip>

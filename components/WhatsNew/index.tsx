@@ -24,12 +24,17 @@ export const WhatsNew: FC = () => {
   }, [])
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh'}}>
-      <h1>更新日志</h1>
-      <p>这是我们项目的更新日志，你可以在这里查看我们每个版本的更新内容。</p>
-      <div style={{maxWidth: '1500px', width: '100%', overflow: 'auto'}}>
+    <div className='flex lg:px-6 sm:pt-4'
+         style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh', maxHeight: '100vh'}}>
+      <h1 className='select-none'>更新日志</h1>
+      <p className='select-none'>这是我们项目的更新日志，你可以在这里查看我们每个版本的更新内容。</p>
+      <div id='log-container' className='flex flex-col' style={{width: '100%', overflow: 'auto', height: '100%'}}>
         {
-           <Spinner></Spinner> || whatsNewData.map(value => {
+          whatsNewData.length === 0 && <div className='m-auto flex gap-2'>
+                <Spinner id='spinner'/>
+                <span className='select-none my-auto'>少女折寿中......</span>
+            </div>
+          || whatsNewData.map(value => {
             return (
               <Card key={value.version} style={{margin: '20px', padding: '20px'}}>
                 <h2>版本：{value.version}</h2>

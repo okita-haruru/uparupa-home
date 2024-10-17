@@ -16,7 +16,7 @@ export const CardTransactions = () => {
             <CardBody className="py-5 gap-4">
                 <div className="flex gap-2.5 justify-center">
                     <div className="flex flex-col border-dashed border-2 border-divider py-2 px-6 rounded-xl">
-                        <span className="text-default-900 text-xl font-semibold">赞助者</span>
+                        <span className="text-default-900 text-xl font-semibold">💰赞助者</span>
                     </div>
                 </div>
                 <div className="flex flex-col gap-6 overflow-auto max-h-[24rem]">

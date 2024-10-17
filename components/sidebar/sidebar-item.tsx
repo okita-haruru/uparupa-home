@@ -1,7 +1,8 @@
 import NextLink from "next/link";
 import React from "react";
-import { useSidebarContext } from "../layout/layout-context";
+import {useSidebarContext} from "../layout/layout-context";
 import clsx from "clsx";
+import {FaExternalLinkAlt} from "react-icons/fa";
 
 interface Props {
   title: string;
@@ -10,8 +11,8 @@ interface Props {
   href?: string;
 }
 
-export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
-  const { collapsed, setCollapsed } = useSidebarContext();
+export const SidebarItem = ({icon, title, isActive, href = ""}: Props) => {
+  const {collapsed, setCollapsed} = useSidebarContext();
 
   const handleClick = () => {
     if (window.innerWidth < 768) {
@@ -19,10 +20,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
     }
   };
   return (
-    <NextLink
-      href={href}
-      className="text-default-900 active:bg-none max-w-full"
-    >
+    <NextLink href={href} className="text-default-900 active:bg-none max-w-full">
       <div
         className={clsx(
           isActive
@@ -34,6 +32,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
       >
         {icon}
         <span className="text-default-900">{title}</span>
+        {href?.startsWith('http') && <FaExternalLinkAlt size={10}/>}
       </div>
     </NextLink>
   );
