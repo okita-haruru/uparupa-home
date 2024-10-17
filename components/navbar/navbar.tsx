@@ -1,20 +1,18 @@
-import { Link, Navbar, NavbarContent } from "@nextui-org/react";
+import {Link, Navbar, NavbarContent} from "@nextui-org/react";
 import React from "react";
-import { FeedbackIcon } from "../icons/navbar/feedback-icon";
-import { GithubIcon } from "../icons/navbar/github-icon";
-import { BurguerButton } from "./burguer-button";
-import { NotificationsDropdown } from "./notifications-dropdown";
+import {GithubIcon} from "../icons/navbar/github-icon";
+import {BurguerButton} from "./burguer-button";
 import {DarkModeSwitch} from "@/components/navbar/darkmodeswitch";
-import {ContentBox} from "@/components/navbar/content";
 import SearchBox from "@/components/navbar/searchbox";
+import {SiMinecraft} from "react-icons/si";
 
 interface Props {
   children: React.ReactNode;
 }
 
-export const NavbarWrapper = ({ children }: Props) => {
+export const NavbarWrapper = ({children}: Props) => {
   return (
-    <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+    <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden" style={{maxHeight: '100vh'}}>
       <Navbar
         isBordered
         className="w-full"
@@ -23,37 +21,20 @@ export const NavbarWrapper = ({ children }: Props) => {
         }}
       >
         <NavbarContent className="md:hidden">
-          <BurguerButton />
+          <BurguerButton/>
         </NavbarContent>
         <NavbarContent className="w-full max-md:hidden">
-
-         <SearchBox></SearchBox>
+          <SearchBox></SearchBox>
         </NavbarContent>
-        <NavbarContent
-          justify="end"
-          className="w-fit data-[justify=end]:flex-grow-0"
-        >
+        <NavbarContent justify="end" className="w-fit data-[justify=end]:flex-grow-0">
           <div className="flex items-center gap-2 max-md:hidden">
-            <FeedbackIcon />
-            <span>Feedback?</span>
+            <SiMinecraft size={140}/>
           </div>
-
-          <NotificationsDropdown />
-
-          <div className="max-md:hidden">
-            <ContentBox/>
-          </div>
-
-          <Link
-            href="https://github.com/okita-haruru"
-            target={"_blank"}
-          >
-            <GithubIcon />
+          <Link href="https://github.com/Ave-CRYCHIC" target={"_blank"}>
+            <GithubIcon/>
           </Link>
           <NavbarContent>
-            <DarkModeSwitch />
-            {/*<UserDropdown />*/}
-            {/*<UserDropdownToy/>*/}
+            <DarkModeSwitch/>
           </NavbarContent>
         </NavbarContent>
       </Navbar>

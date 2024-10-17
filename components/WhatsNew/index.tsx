@@ -1,6 +1,6 @@
 "use client"
 import {FC, useEffect, useState} from "react";
-import {Card} from "@nextui-org/react";
+import {Card, Spinner} from "@nextui-org/react";
 
 interface WhatsNewData {
   version: string,
@@ -17,7 +17,7 @@ export const WhatsNew: FC = () => {
   const [whatsNewData, setWhatsNewData] = useState<WhatsNewData[]>([])
 
   useEffect(() => {
-    fetch("https://raw.githubusercontent.com/Ave-CRYCHIC/uparupa-whatsnew/refs/heads/main/whatsnew.json")
+    fetch("./api/changelog")
       .then(async resp => {
         setWhatsNewData(await resp.json());
       })
@@ -29,7 +29,7 @@ export const WhatsNew: FC = () => {
       <p>这是我们项目的更新日志，你可以在这里查看我们每个版本的更新内容。</p>
       <div style={{maxWidth: '1500px', width: '100%', overflow: 'auto'}}>
         {
-          whatsNewData.map(value => {
+           <Spinner></Spinner> || whatsNewData.map(value => {
             return (
               <Card key={value.version} style={{margin: '20px', padding: '20px'}}>
                 <h2>版本：{value.version}</h2>

@@ -1,6 +1,7 @@
 import {Avatar, AvatarGroup, Card, CardBody, Tooltip} from "@nextui-org/react";
 import React, {useEffect, useState} from "react";
 import {GithubContribution} from "@/app/api/contribution/route";
+import {GetDevelopersResponse} from "@/app/api/developers/route";
 
 require('dotenv').config();
 
@@ -16,30 +17,32 @@ export const CardAgents = () => {
   const [tooltipContent, setTooltipContent] = useState(null);
 
   const [contribution, setContribution] = useState<GithubContribution[]>([]);
+  const [developers, setDevelopers] = useState<GetDevelopersResponse>()
 
   useEffect(() => {
+    fetch('/api/developers').then(async (resp) => {
+      const data: GetDevelopersResponse = await resp.json();
+      console.log(data);
+      setDevelopers(data);
+    })
   }, []);
 
   return (
-    <Card className="bg-default-50 rounded-xl shadow-md px-4 py-6 w-full">
+    <Card className="bg-default-50 rounded-xl shadow-md px-4 py-6 w-full select-none">
       <CardBody className="py-5 gap-6">
         <div className="flex gap-2.5 justify-center">
           <div className="flex flex-col border-dashed border-2 border-divider py-2 px-6 rounded-xl">
-            <span className="text-default-900 text-xl font-semibold">
-              {" "}
-              {"⭐"}开发者
-            </span>
+            <span className="text-default-900 text-xl font-semibold">🌸开发者</span>
           </div>
         </div>
 
         <div className="flex items-center gap-6 flex-col">
-          <span className="text-xs">
-            争取提供令玩家满意的游戏体验
-          </span>
+          <span className="text-xs">争取提供令玩家满意的游戏体验</span>
           <AvatarGroup isBordered>
-            {avatarData.map((user) => (
-              <Tooltip key={user.username} content={user.username}>
-                <Avatar src={user.avatarUrl}/>
+            {developers?.summary.map((user) => (
+              <Tooltip className='select-none' key={user.username} content={user.displayName}>
+                <Avatar className='cursor-pointer' src={user.avatar} size='lg'
+                        onClick={() => window.open(user.user_page)}/>
               </Tooltip>
             ))}
           </AvatarGroup>

@@ -15,8 +15,8 @@ const headers = {
 interface GithubUser {
   login: string;
   url: string;
-  avatar: string;
   html_url: string;
+  avatar_url: string;
 }
 
 interface GithubRepo {
@@ -37,6 +37,7 @@ export interface DeveloperInfo {
   username: string;
   displayName: string;
   user_page: string;
+  avatar: string;
   contributions: DeveloperContribute;
 }
 
@@ -58,13 +59,19 @@ export interface RepoContributor {
   contributors: DeveloperContribute[];
 }
 
+export interface GetDevelopersResponse {
+  summary: DeveloperInfo[];
+  details: RepoContributor[];
+  success: boolean;
+}
+
 const getName = async (user: GithubUser | undefined) => {
   if (!user) return '';
   const resp = await axios.get(user.url, {headers});
   return resp.data.name || user.login;
 }
 
-export async function GET() {
+export async function GET(): Promise<NextResponse<GetDevelopersResponse>> {
   try {
     const [members, repositories] = await Promise.all([
       axios.get<GithubUser[]>(`${GITHUB_API_URL}/orgs/${ORGANIZATION}/teams/${TEAM}/members`, {headers}).then(resp => resp.data),
@@ -73,11 +80,14 @@ export async function GET() {
 
     const memberUsernames = new Set(members.map(member => member.login));
 
-    const summary = await Promise.all(members.map(async (member) => {
+    const summary: DeveloperInfo[] = await Promise.all(members.map(async (member) => {
+      4
+      console.log(member);
       return {
         username: member.login,
         displayName: await getName(member),
         user_page: member.html_url,
+        avatar: member.avatar_url,
         contributions: {
           commits: 0,
           additions: 0,
@@ -125,9 +135,9 @@ export async function GET() {
       });
     })
 
-    return NextResponse.json({summary, details});
+    return NextResponse.json({summary, details, success: true});
   } catch (error) {
     console.error(error);
-    return NextResponse.json({error});
+    return NextResponse.json({error, summary: [], details: [], success: false});
   }
 }
