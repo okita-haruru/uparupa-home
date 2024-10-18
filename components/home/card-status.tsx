@@ -6,7 +6,7 @@ import {BsFillHousesFill} from "react-icons/bs";
 import axios from "axios";
 import {API_URL} from "@/config/apiconfig";
 
-export const CardTown = () => {
+export const CardStatus = () => {
   const [count, setCount] = useState<number | null>(null);
   const [code, setCode] = useState<number | null>(null);
 
@@ -68,26 +68,24 @@ export const CardTown = () => {
       code === 200 && 'bg-success' ||
       code === 502 && 'bg-danger' || 'bg-default'
     } xl:max-w-sm rounded-xl shadow-md px-3 w-full select-none`}>
-    <CardBody className="py-5 overflow-hidden">
-      <div className="flex gap-2.5">
-        <BsFillHousesFill className='my-auto' size={30}/>
-        <div className="flex flex-col">
-          <div className="text-white">
-            小镇状态：
-            {
-              code === null && "加载中" ||
-              code === 501 && "修缮中" ||
-              code === 200 && "营业中" ||
-              code === 502 && "你服炸了"
-            }
-          </div>
+    <CardBody className="py-5 overflow-hidden flex-row gap-2.5">
+      <BsFillHousesFill className='my-auto' size={30}/>
+      <div className="flex flex-col">
+        <div className="text-white">
+          小镇状态：
           {
-            code === 200 &&
-            <div className="text-white text-xs">{count} 位公民在线</div>
-            ||
-            <div className="text-white text-xs">&nbsp;</div>
+            code === null && "加载中" ||
+            code === 501 && "修缮中" ||
+            code === 200 && "营业中" ||
+            code === 502 && "你服炸了"
           }
         </div>
+        {
+          code === 200 &&
+          <div className="text-white text-xs">{count} 位公民在线</div>
+          ||
+          <div className="text-white text-xs">&nbsp;</div>
+        }
       </div>
     </CardBody>
   </Card>

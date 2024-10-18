@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {GetDevelopersResponse} from "@/app/api/developers/route";
 import {FaExternalLinkAlt} from "react-icons/fa";
 
-export const CardAgents = () => {
+export const CardDevelopers = () => {
   const [developers, setDevelopers] = useState<GetDevelopersResponse>()
 
   useEffect(() => {
@@ -29,15 +29,12 @@ export const CardAgents = () => {
           <span className="text-xs">争取提供令玩家满意的游戏体验</span>
           <AvatarGroup isBordered>
             {developers?.summary.map((user) => (
-              <Tooltip
-                className='select-none'
-                key={user.username}
-                content={
-                  <div className='flex justify-center content-center justify-items-center items-center'>
-                    <span className='mx-1'>{user.displayName}</span>
-                    <FaExternalLinkAlt size={10}/>
-                  </div>
-                }>
+              <Tooltip className='select-none' key={user.username} content={
+                <div className='flex justify-center content-center justify-items-center items-center'>
+                  <span className='mx-1'>{user.displayName}</span>
+                  <FaExternalLinkAlt size={10}/>
+                </div>
+              }>
                 <Avatar color='success' className='cursor-pointer' src={user.avatar} size='lg'
                         onClick={() => window.open(user.user_page)}/>
               </Tooltip>

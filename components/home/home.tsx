@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import {CardTown} from "./CardTown";
-import {CardTencent} from "./CardTencent";
-import {CardBalance3} from "./card-balance3";
-import {CardAgents} from "./card-agents";
-import {CardTransactions} from "./card-transactions";
+import {CardStatus} from "./card-status";
+import {CardQq} from "./card-qq";
+import {CardVersion} from "./card-version";
+import {CardDevelopers} from "./card-developers";
+import {CardSponsor} from "./card-sponsor";
 import {Card} from "@nextui-org/react";
 import {MyChart} from "@/components/home/mychart";
-import {PlayerTable} from "@/components/home/playertable";
+import {PlayerTable} from "@/components/home/table-player";
 
 export const Home = () => (
   <div className="h-full lg:px-6 pt-3">
@@ -18,9 +18,9 @@ export const Home = () => (
         <div className="flex flex-col gap-2 select-none">
           <h3 className="text-xl font-semibold">公告</h3>
           <div className="grid md:grid-cols-2 grid-cols-1 2xl:grid-cols-3 gap-5  justify-center w-full">
-            <CardTown/>
-            <CardTencent/>
-            <CardBalance3/>
+            <CardStatus/>
+            <CardQq/>
+            <CardVersion/>
           </div>
         </div>
 
@@ -37,8 +37,8 @@ export const Home = () => (
       <div className="gap-2 flex flex-col xl:max-w-md w-full select-none">
         <h3 className="text-xl font-semibold">特别鸣谢</h3>
         <div className="flex flex-col justify-center gap-4 flex-wrap md:flex-nowrap md:flex-col">
-          <CardAgents/>
-          <CardTransactions/>
+          <CardDevelopers/>
+          <CardSponsor/>
         </div>
       </div>
     </div>
