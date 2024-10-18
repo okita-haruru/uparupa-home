@@ -6,7 +6,7 @@ import qqGroupQrcode from "@/public/assets/qq-group-qrcode.jpg";
 import qqGroupQrcodeDark from "@/public/assets/qq-group-qrcode-dark.jpg";
 import {useTheme} from "next-themes";
 
-export const CardBalance2 = () => {
+export const CardQq = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [_, setMounted] = useState(false);
   const {theme} = useTheme();
@@ -25,16 +25,14 @@ export const CardBalance2 = () => {
 
   return (
     <>
-      <Card className="xl:max-w-sm bg-default-50 rounded-xl shadow-md px-3 w-full"
+      <Card className="xl:max-w-sm bg-default-50 rounded-xl shadow-md px-3 w-full select-none"
             isPressable
             onPress={() => setShowModal(true)}>
-        <CardBody className="py-5">
-          <div className="flex gap-2.5">
-            <FaQq style={{marginTop: 'auto', marginBottom: 'auto'}} size={30}/>
-            <div className="flex flex-col">
-              <span style={{userSelect: 'none'}} className="text-default-900">QQ群</span>
-              <span style={{userSelect: 'none'}} className="text-default-900 text-xs">634917584</span>
-            </div>
+        <CardBody className="py-5 flex-row gap-2.5">
+          <FaQq className='my-auto' size={30}/>
+          <div className="flex flex-col">
+            <span className="text-default-900">QQ群</span>
+            <span className="text-default-900 text-xs">634917584</span>
           </div>
         </CardBody>
       </Card>

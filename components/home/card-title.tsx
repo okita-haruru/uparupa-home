@@ -16,7 +16,7 @@ export const CardTitle = () => {
     // </div>
     <div className="flex items-center gap-4">
       <AcmeIcon/>
-      <div style={{userSelect: 'none'}} className="flex flex-col gap-4">
+      <div  className="flex flex-col gap-4 select-none">
         <h3 className="text-xl font-semibold m-0 text-default-900 whitespace-nowrap f">
           乌帕鲁帕小镇
         </h3>
