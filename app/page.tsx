@@ -1,8 +1,8 @@
 import type {NextPage} from "next";
-import {Content} from "@/components/home/content";
+import {Home} from "@/components/home/home";
 
-const Home: NextPage = () => {
-    return <Content/>;
+const HomePage: NextPage = () => {
+  return <Home/>;
 };
 
-export default Home;
+export default HomePage;

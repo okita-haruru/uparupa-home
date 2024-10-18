@@ -81,8 +81,6 @@ export async function GET(): Promise<NextResponse<GetDevelopersResponse>> {
     const memberUsernames = new Set(members.map(member => member.login));
 
     const summary: DeveloperInfo[] = await Promise.all(members.map(async (member) => {
-      4
-      console.log(member);
       return {
         username: member.login,
         displayName: await getName(member),

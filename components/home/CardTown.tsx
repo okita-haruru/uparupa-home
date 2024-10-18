@@ -1,10 +1,12 @@
+"use client";
+
 import {Card, CardBody} from "@nextui-org/react";
 import React, {useEffect, useState} from "react";
 import {BsFillHousesFill} from "react-icons/bs";
 import axios from "axios";
 import {API_URL} from "@/config/apiconfig";
 
-export const CardBalance1 = () => {
+export const CardTown = () => {
   const [count, setCount] = useState<number | null>(null);
   const [code, setCode] = useState<number | null>(null);
 
@@ -26,7 +28,8 @@ export const CardBalance1 = () => {
     avatar: string;
   }
 
-  useEffect(() => {
+  const loadStatus = () => {
+    setCode(null);
     axios.get(API_URL + '/player_list')
       .then(response => {
         // console.log("res-code"+response.status); // 打印状态码
@@ -50,22 +53,40 @@ export const CardBalance1 = () => {
           console.error('Failed to fetch data:', error);
         }
       });
+  }
+
+  useEffect(() => {
+    loadStatus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <Card
+    isPressable
+    onPress={loadStatus}
     className={`${
       code === 501 && 'bg-warning' ||
       code === 200 && 'bg-success' ||
       code === 502 && 'bg-danger' || 'bg-default'
-    } xl:max-w-sm rounded-xl shadow-md px-3 w-full`}>
+    } xl:max-w-sm rounded-xl shadow-md px-3 w-full select-none`}>
     <CardBody className="py-5 overflow-hidden">
-      <div className="flex gap-2.5" style={{userSelect: 'none'}}>
-        <BsFillHousesFill style={{marginTop: 'auto', marginBottom: 'auto'}} size={30}/>
+      <div className="flex gap-2.5">
+        <BsFillHousesFill className='my-auto' size={30}/>
         <div className="flex flex-col">
-          <span className="text-white">
-            {code === 501 && "小镇状态：修缮中" || code === 200 && "小镇状态：营业中" || code === 502 && "小镇状态：你服炸了"}
-          </span>
-          {code === 200 && <span className="text-white text-xs">{count} 位公民在线</span>}
+          <div className="text-white">
+            小镇状态：
+            {
+              code === null && "加载中" ||
+              code === 501 && "修缮中" ||
+              code === 200 && "营业中" ||
+              code === 502 && "你服炸了"
+            }
+          </div>
+          {
+            code === 200 &&
+            <div className="text-white text-xs">{count} 位公民在线</div>
+            ||
+            <div className="text-white text-xs">&nbsp;</div>
+          }
         </div>
       </div>
     </CardBody>

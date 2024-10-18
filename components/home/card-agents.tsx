@@ -18,9 +18,11 @@ export const CardAgents = () => {
     <Card className="bg-default-50 rounded-xl shadow-md px-4 py-6 w-full select-none">
       <CardBody className="py-5 gap-6">
         <div className="flex gap-2.5 justify-center">
-          <div className="flex flex-col border-dashed border-2 border-divider py-2 px-6 rounded-xl">
-            <span className="text-default-900 text-xl font-semibold">🌸开发者</span>
-          </div>
+          <Tooltip content='(🛠️工具人)' showArrow placement={'right'}>
+            <div className="flex flex-col border-dashed border-2 border-divider py-2 px-6 rounded-xl">
+              <span className="text-default-900 text-xl font-semibold">🌸开发者</span>
+            </div>
+          </Tooltip>
         </div>
 
         <div className="flex items-center gap-6 flex-col">
