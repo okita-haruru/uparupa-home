@@ -18,7 +18,7 @@ export const WhatsNew: FC = () => {
   const [whatsNewData, setWhatsNewData] = useState<WhatsNewData[]>([])
 
   useEffect(() => {
-    fetch("./api/changelog")
+    fetch("/api/changelog", {cache: 'no-store'})
       .then(async resp => {
         setWhatsNewData(await resp.json());
       })
@@ -31,10 +31,12 @@ export const WhatsNew: FC = () => {
       <p className='select-none'>这是我们项目的更新日志，你可以在这里查看我们每个版本的更新内容。</p>
       <div id='log-container' className='w-full'>
         {
-          whatsNewData.length === 0 && <div className='m-auto flex gap-2'>
-            <Spinner id='spinner'/>
-            <span className='select-none my-auto'>少女折寿中......</span>
-          </div>
+          whatsNewData.length === 0 && (
+            <div className='m-auto flex gap-2'>
+              <Spinner id='spinner'/>
+              <span className='select-none my-auto'>少女折寿中......</span>
+            </div>
+          )
           || whatsNewData.map(value => {
             return (
               <Card key={value.version} className='h-fit my-3 mx-1'>
