@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "2.0.22",
+    "@nextui-org/react": "^2.4.8",
     "apexcharts": "^3.35.5",
     "axios": "1.7.4",
     "clsx": "^2.0.0",
     "dotenv": "^16.4.5",
-    "framer-motion": "^10.16.0",
+    "framer-motion": "^10.17.0",
     "next": "14.2.10",
     "next-themes": "0.2.1",
     "octokit": "^4.0.2",
