@@ -1,5 +1,5 @@
 import React from 'react';
-import {FishRanking} from '@/components/fish_ranking';
+import {FishRanking} from '@/components/fish-ranking';
 
 const fish_ranking = () => {
     return <FishRanking />;
