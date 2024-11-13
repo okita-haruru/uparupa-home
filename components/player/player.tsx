@@ -1,12 +1,13 @@
 'use client';
 
 import { PlayerInfo } from '@/app/api';
-import { Card, CardBody, CardFooter, Chip, Image, Skeleton, Tooltip } from '@nextui-org/react';
+import { Button, Card, CardBody, CardFooter, Chip, Image, Skeleton, Tooltip } from '@nextui-org/react';
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { SkinViewer, WalkingAnimation } from 'skinview3d';
-import { FaCheckCircle as OnlineIcon, FaTimesCircle as OfflineIcon, FaCrown } from "react-icons/fa";
+import { FaCheckCircle as OnlineIcon, FaTimesCircle as OfflineIcon, FaCrown, FaSkull } from "react-icons/fa";
+import { GiSkeleton } from 'react-icons/gi';
 
 
 export interface PlayerProps {
@@ -68,7 +69,18 @@ export const Player = ({ name }: PlayerProps) => {
       <Card className='w-fit max-w-fit my-auto'>
         <CardBody className='p-0'>
           <Skeleton isLoaded={!loading} className='h-fit w-fit'>
-            <canvas ref={canvasRef} width={300} height={400} />
+            <div className="relative">
+              <Card className="absolute top-0 left-0 m-2 p-1 bg-default-500 rounded select-none">
+                <ul className='flex flex-col gap-1'>
+                  <li className='flex flex-row items-center gap-1'>
+                    <FaSkull />
+                    <span>{playerInfo?.states.death.value}</span>
+                    <span>#{playerInfo?.states.death.rank}</span>
+                  </li>
+                </ul>
+              </Card>
+              <canvas ref={canvasRef} width={300} height={400} />
+            </div>
           </Skeleton>
         </CardBody>
         <CardFooter className='flex select-none justify-between'>
