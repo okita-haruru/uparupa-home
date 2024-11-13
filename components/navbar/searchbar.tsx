@@ -4,6 +4,7 @@ import { Avatar, Badge, Button, Card, CardBody, Input, Listbox, ListboxItem } fr
 import { SearchResult } from '@/app/api/searching/route';
 import { GoArrowUpRight } from "react-icons/go";
 import { FaUser, FaWikipediaW } from "react-icons/fa";
+import { navigateToPlayer } from '@/app/client-redirect';
 
 export const SearchBar = () => {
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -26,7 +27,7 @@ export const SearchBar = () => {
       const url = `https://zh.minecraft.wiki/w/${encodeURIComponent(searchResult.text)}`;
       window.open(url, '_blank');
     } else {
-      window.open(`/player/${searchResult.text}`);
+      navigateToPlayer(searchResult.text);
     }
   }
 
@@ -75,7 +76,6 @@ export const SearchBar = () => {
                   .map((searchItem, index) => (
                     <ListboxItem
                       key={index}
-                      className="flex items-center p-2 cursor-pointer gap-3"
                       onClick={(e) => {
                         // Left click
                         if (e.button === 0) {
@@ -84,17 +84,19 @@ export const SearchBar = () => {
                         }
                       }}
                     >
-                      <Button isIconOnly variant='light' onClick={() => setKeyword(searchItem.text)}>
-                        <GoArrowUpRight />
-                      </Button>
-                      {typeof searchItem.icon === 'string' ? (
-                        <Badge content={searchItem.type === 'wiki' ? <FaWikipediaW /> : <FaUser />}>
-                          <Avatar radius='sm' src={searchItem.icon} alt={searchItem.text} />
-                        </Badge>
-                      ) : (
-                        searchItem.icon
-                      )}
-                      <span>{searchItem.text}</span>
+                      <div className='flex items-center gap-3'>
+                        <Button isIconOnly variant='light' onClick={() => setKeyword(searchItem.text)}>
+                          <GoArrowUpRight />
+                        </Button>
+                        {typeof searchItem.icon === 'string' ? (
+                          <Badge content={searchItem.type === 'wiki' ? <FaWikipediaW /> : <FaUser />}>
+                            <Avatar radius='sm' src={searchItem.icon} alt={searchItem.text} />
+                          </Badge>
+                        ) : (
+                          searchItem.icon
+                        )}
+                        <span>{searchItem.text}</span>
+                      </div>
                     </ListboxItem>
                   ))}
               </Listbox>

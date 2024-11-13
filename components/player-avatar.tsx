@@ -37,6 +37,7 @@ export const PlayerAvatar = ({ name }: PlayerHeaderProps) => {
                 piglinBrute: { rank: 1, value: 1 },
             }
         },
+        isOnline: false,
     });
 
     useEffect(() => {

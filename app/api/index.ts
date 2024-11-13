@@ -12,6 +12,7 @@ export interface PlayerInfo {
     join: number;
     lastSeen: number;
     playTime: number;
+    isOnline: boolean;
 }
 
 export interface Ranking {
