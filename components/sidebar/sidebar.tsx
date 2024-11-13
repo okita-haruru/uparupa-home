@@ -26,7 +26,7 @@ const navigation = [
       {
         title: '更新日志',
         icon: <LuFileClock />,
-        path: 'update-log'
+        path: '/update-log'
       }
     ]
   },
@@ -36,22 +36,22 @@ const navigation = [
       {
         title: "富豪榜",
         icon: <FaMoneyBillWave />,
-        path: 'treasure-ranking'
+        path: '/treasure-ranking'
       },
       {
         title: '钓鱼佬榜',
         icon: <GiFishing />,
-        path: 'fish-ranking'
+        path: '/fish-ranking'
       },
       {
         title: '击杀榜',
         icon: <LuSwords />,
-        path: 'kills-ranking'
+        path: '/kills-ranking'
       },
       {
         title: '肝帝榜',
         icon: <GiLiver />,
-        path: 'time-ranking',
+        path: '/time-ranking',
       }
     ]
   },
@@ -61,7 +61,7 @@ const navigation = [
       {
         title: '卫星地图',
         icon: <GiTreasureMap />,
-        path: 'map'
+        path: '/map'
       }
     ]
   }
@@ -102,8 +102,8 @@ export const SidebarWrapper = () => {
                           key={`menu-${index}-${itemIndex}`}
                           title={menuItem.title}
                           icon={menuItem.icon}
-                          href={`/${menuItem.path}`}
-                          isActive={pathname.startsWith(`/${menuItem.path}`)}
+                          href={`${menuItem.path}`}
+                          isActive={pathname.startsWith(`${menuItem.path}`)}
                         />
                       ))
                     }
