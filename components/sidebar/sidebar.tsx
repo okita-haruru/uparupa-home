@@ -102,7 +102,7 @@ export const SidebarWrapper = () => {
                           key={`menu-${index}-${itemIndex}`}
                           title={menuItem.title}
                           icon={menuItem.icon}
-                          href={menuItem.path}
+                          href={`/${menuItem.path}`}
                           isActive={pathname.startsWith(`/${menuItem.path}`)}
                         />
                       ))
