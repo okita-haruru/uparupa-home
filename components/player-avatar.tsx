@@ -20,7 +20,6 @@ export const PlayerAvatar = ({ name }: PlayerHeaderProps) => {
         uuid: '',
         avatar: '',
         name: 'Keriteal',
-        isOnline: false,
         lastSeen: 0,
         join: 0,
         playTime: 10,
