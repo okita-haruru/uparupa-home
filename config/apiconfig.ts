@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import process from 'process';
 dotenv.config();
 
 export const { SERVER_API_BASE } = process.env;
