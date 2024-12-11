@@ -2,8 +2,16 @@ import { Avatar, Card, CardBody } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+interface SponsorInfo {
+  avatar: string;
+  name: string;
+  amount: string;
+  date: string;
+}
+
 export const CardSponsor = () => {
-  const [items, setItems] = useState([]);
+  // 明确指定 items 的类型为 SponsorInfo[]
+  const [items, setItems] = useState<SponsorInfo[]>([]);
 
   useEffect(() => {
     const fetchSponsors = async () => {
@@ -22,7 +30,6 @@ export const CardSponsor = () => {
           console.error("Unknown error fetching sponsors data:", error);
         }
       }
-
     };
 
     fetchSponsors();
