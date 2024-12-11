@@ -36,10 +36,23 @@ const CustomTooltip = ({ active, payload }: any) => {
     return null;
 };
 
+// 动态生成 Y 轴的刻度值
+const generateTicks = (dataMax: number) => {
+    const max = Math.ceil((dataMax * 1.1) / 5) * 5; // 计算最大值，保留 10% 空间并向上取整为 5 的倍数
+    const ticks = [];
+    for (let i = 0; i <= max; i += 5) {
+        ticks.push(i); // 每次增加 5
+    }
+    return ticks;
+};
+
 export const MyChart = () => {
     const { data } = useChartData();
     const { theme } = useTheme();
     const formattedData = formatData(data);
+
+    // 动态获取数据中的最大值
+    const dataMax = Math.max(...formattedData.map((d) => d.count));
 
     // 等待 theme 初始化完成
     if (!theme) {
@@ -89,7 +102,8 @@ export const MyChart = () => {
                         tickLine={{
                             stroke: getColor('rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.2)'),
                         }}
-                        domain={[0, (dataMax: number) => Math.ceil(dataMax / 5) * 5]}
+                        domain={[0, Math.ceil((dataMax * 1.1) / 5) * 5]} // 动态最大值
+                        ticks={generateTicks(dataMax)} // 动态生成刻度值
                     />
 
                     {/* 自定义 Tooltip */}
