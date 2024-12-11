@@ -16,8 +16,13 @@ export const CardSponsor = () => {
           console.error("Failed to fetch sponsors:", data.error);
         }
       } catch (error) {
-        console.error("Error fetching sponsors:", error.message);
+        if (error instanceof Error) {
+          console.error("Error fetching sponsors data:", error.message);
+        } else {
+          console.error("Unknown error fetching sponsors data:", error);
+        }
       }
+
     };
 
     fetchSponsors();
