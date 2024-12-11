@@ -3,13 +3,13 @@ import {FC, useEffect, useState} from "react";
 import {Card, CardBody, CardHeader, Spinner} from "@nextui-org/react";
 import {CardFooter} from "@nextui-org/card";
 
-interface WhatsNewData {
+export interface WhatsNewData {
   version: string,
   ['release-date']: string,
   items: WhatsNewItem[]
 }
 
-interface WhatsNewItem {
+export interface WhatsNewItem {
   title: string;
   details: string[];
 }
