@@ -1,93 +1,110 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-import {useChartData} from './useChartData';
-import {ApexOptions} from 'apexcharts';
+import {
+    AreaChart,
+    Area,
+    XAxis,
+    YAxis,
+    Tooltip,
+    CartesianGrid,
+    ResponsiveContainer
+} from 'recharts';
+import { useChartData } from './useChartData';
+import { useTheme } from 'next-themes';
 
-// 动态导入 Chart 组件，并禁用服务器端渲染
-const Chart = dynamic(() => import('react-apexcharts'), {ssr: false});
+// 格式化数据
+const formatData = (data: { login_time: string; count: number }[]) =>
+    data.map(({ login_time, count }) => ({ login_time, count }));
 
-// 定义一个函数来生成 series 数据
-const generateSeries = (data: { login_time: string; count: number }[]) => {
-  return [
-    {
-      name: 'players',
-      data: data.map(item => item.count),
-    },
-  ];
-};
-
-// 定义一个函数来生成 options 配置
-const generateOptions = (data: { login_time: string; count: number }[]): ApexOptions => {
-  return {
-    chart: {
-      type: 'area',
-      animations: {
-        easing: 'linear', // 确保这里是合法的值
-        speed: 300,
-      },
-      sparkline: {
-        enabled: false,
-      },
-      brush: {
-        enabled: false,
-      },
-      id: 'basic-bar',
-      foreColor: 'hsl(var(--nextui-default-800))',
-      stacked: true,
-      toolbar: {
-        show: false,
-      },
-    },
-    xaxis: {
-      categories: data.map(item => item.login_time),
-      labels: {
-        style: {
-          colors: 'hsl(var(--nextui-default-800))',
-        },
-      },
-      axisBorder: {
-        color: 'hsl(var(--nextui-nextui-default-200))',
-      },
-      axisTicks: {
-        color: 'hsl(var(--nextui-nextui-default-200))',
-      },
-    },
-    yaxis: {
-      labels: {
-        style: {
-          colors: 'hsl(var(--nextui-default-800))',
-        },
-      },
-    },
-    tooltip: {
-      enabled: false,
-    },
-    grid: {
-      show: true,
-      borderColor: 'hsl(var(--nextui-default-200))',
-      strokeDashArray: 0,
-      position: 'back',
-    },
-    stroke: {
-      curve: 'smooth',
-      fill: {
-        colors: ['red'],
-      },
-    },
-  };
+// 自定义 Tooltip 渲染
+const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+        return (
+            <div
+                style={{
+                    backgroundColor: '#FFF',
+                    border: '1px solid rgba(0, 0, 0, 0.2)',
+                    borderRadius: '8px',
+                    padding: '10px',
+                    color: '#000',
+                }}
+            >
+                <p>{`日期: ${payload[0].payload.login_time}`}</p>
+                <p>{`日活跃人数: ${payload[0].value}`}</p>
+            </div>
+        );
+    }
+    return null;
 };
 
 export const MyChart = () => {
-  const {data} = useChartData();
+    const { data } = useChartData();
+    const { theme } = useTheme();
+    const formattedData = formatData(data);
 
-  const series = generateSeries(data);
-  const options = generateOptions(data);
+    // 等待 theme 初始化完成
+    if (!theme) {
+        return null;
+    }
 
-  return (
-    <div className="w-full z-20" style={{height: '480px'}}>
-      <div id="chart">
-        <Chart options={options} series={series} type="area" height={'480px'}/>
-      </div>
-    </div>
-  );
+    // 根据主题动态设置颜色
+    const getColor = (lightColor: string, darkColor: string) =>
+        theme === 'dark' ? darkColor : lightColor;
+
+    return (
+        <div className="chart-container" style={{ width: '100%', height: '480px' }}>
+            <ResponsiveContainer>
+                <AreaChart data={formattedData}>
+                    {/* 网格 */}
+                    <CartesianGrid
+                        horizontal={true}
+                        vertical={false}
+                        strokeDasharray="3 3"
+                        stroke={getColor('rgba(0, 0, 0, 0.1)', 'rgba(255, 255, 255, 0.1)')}
+                    />
+
+                    {/* X 轴 */}
+                    <XAxis
+                        dataKey="login_time"
+                        tick={{
+                            fontSize: 15,
+                            fill: getColor('#000', 'rgba(255, 255, 255, 0.8)'),
+                        }}
+                        axisLine={{
+                            stroke: getColor('rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.2)'),
+                        }}
+                        tickLine={{
+                            stroke: getColor('rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.2)'),
+                        }}
+                        padding={{ left: 10, right: 10 }}
+                    />
+
+                    {/* Y 轴 */}
+                    <YAxis
+                        tick={{
+                            fill: getColor('#000', 'rgba(255, 255, 255, 0.8)'),
+                        }}
+                        axisLine={{
+                            stroke: getColor('rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.2)'),
+                        }}
+                        tickLine={{
+                            stroke: getColor('rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.2)'),
+                        }}
+                        domain={[0, (dataMax: number) => Math.ceil(dataMax / 5) * 5]}
+                    />
+
+                    {/* 自定义 Tooltip */}
+                    <Tooltip content={<CustomTooltip />} />
+
+                    {/* 区域图 */}
+                    <Area
+                        type="monotone"
+                        dataKey="count"
+                        stroke="#3B82F6"
+                        strokeWidth={3}
+                        fill="rgba(59, 130, 246, 0.4)"
+                    />
+                </AreaChart>
+            </ResponsiveContainer>
+        </div>
+    );
 };
