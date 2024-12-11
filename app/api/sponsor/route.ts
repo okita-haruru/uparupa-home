@@ -29,11 +29,15 @@ export async function GET(): Promise<NextResponse<GetSponsorsResponse>> {
 
     return NextResponse.json({ sponsors: data, success: true });
   } catch (error) {
-    console.error("Error fetching sponsors data:", error.message);
+    if (error instanceof Error) {
+      console.error("Error fetching sponsors data:", error.message);
+    } else {
+      console.error("Unknown error fetching sponsors data:", error);
+    }
     return NextResponse.json({
       sponsors: [],
       success: false,
-      error: error.message,
+      error: error instanceof Error ? error.message : "Unknown error",
     });
   }
 }
