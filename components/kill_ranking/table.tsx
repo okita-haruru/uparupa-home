@@ -40,7 +40,7 @@ export const TableWrapperForKillsRanking = () => {
                 <DropdownItem key="total" onClick={() => setMethod("total")}>总击杀数</DropdownItem>
                 <DropdownItem key="ancient_guardian" onClick={() => setMethod("ancient_guardian")}>远古守卫者</DropdownItem>
                 <DropdownItem key="phantom" onClick={() => setMethod("phantom")}>幻翼</DropdownItem>
-                <DropdownItem key="piglin" onClick={() => setMethod("piglin")}>猪灵</DropdownItem>
+                <DropdownItem key="piglin" onClick={() => setMethod("piglin")}>猪灵蛮兵</DropdownItem>
                 <DropdownItem key="ender_dragon" onClick={() => setMethod("ender_dragon")}>末影龙</DropdownItem>
                 <DropdownItem key="wither" onClick={() => setMethod("wither")}>凋零</DropdownItem>
                 <DropdownItem key="warden" onClick={() => setMethod("warden")}>坚守者</DropdownItem>

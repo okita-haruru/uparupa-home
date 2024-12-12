@@ -8,7 +8,7 @@ export const columns = [
    {name: '凋零', uid: 'wither_kills'},
    {name: '远古守卫者', uid: 'ancient_guardian_kills'},
    {name: '幻翼', uid: 'phantom_kills'},
-   {name: '猪灵', uid: 'piglin_kills'},
+   {name: '猪灵蛮兵', uid: 'piglin_brute_kills'},
    {name: '总击杀数', uid: 'total_kills'},
 
 ];
@@ -23,7 +23,7 @@ export const kills = [
        wither_kills: '0',
        ancient_guardian_kills: '0',
        phantom_kills: '0',
-       piglin_kills: '0',
+       piglin_brute_kills: '0',
        total_kills: '0',
    },
 ];
@@ -35,7 +35,7 @@ interface Player {
     player_name: string,
     ancient_guardian_kills: number,
     phantom_kills: number,
-    piglin_kills: number,
+    piglin_brute_kills: number,
     ender_dragon_kills: number,
     wither_kills: number,
     warden_kills: number,
@@ -57,7 +57,7 @@ export function fetchKills(method: string = "total",page: number = 1) {
                     wither_kills:  player.wither_kills,
                     ancient_guardian_kills: player.ancient_guardian_kills,
                     phantom_kills: player.phantom_kills,
-                    piglin_kills: player.piglin_kills,
+                    piglin_brute_kills: player.piglin_brute_kills,
                     total_kills: player.total_kills,
                 }));
             } else {

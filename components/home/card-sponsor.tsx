@@ -29,6 +29,7 @@ export const CardSponsor = () => {
         } else {
           console.error("Unknown error fetching sponsors data:", error);
         }
+
       }
     };
 
